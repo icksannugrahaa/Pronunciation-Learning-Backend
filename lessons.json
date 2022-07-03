@@ -1,13 +1,13 @@
-{
+
+[{
     "_id": {
         "$oid": "62bd8fe4caedf616c04007c4"
     },
     "name": "English For Kids",
     "description": "This course helps young children to learn the basics of the English language, from the alphabet to simple words and sentences.",
     "highscore": 0,
-    "level": 0,
+    "level": 1,
     "order": 1,
-    "age": "1-17",
     "rating": 0,
     "required": false,
     "lessons": [
@@ -15,168 +15,172 @@
             "order": 1,
             "name": "Alphabet (A-F)",
             "description": "After this lesson, you will be able to recognize the letters A - F and some words starting with those letters",
+            "level": 1,
+            "exp": 500,
+            "enableSkip": true,
             "option": {
                 "quiz": true,
-                "question_type": "text,image",
+                "theory_type": "text,image",
                 "quiz_type": "text,image",
                 "summary": true,
                 "summary_type": "text,song"
             },
-            "questions": [
+            "theory": [
                 {
                     "title": "Lesson",
                     "question": "This is Apple",
                     "order": 1,
-                    "image": "http://localhost:5000/api/file/show?filename=apple.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=apple.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Ant",
                     "order": 2,
-                    "image": "http://localhost:5000/api/file/show?filename=ant.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=ant.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Bear",
                     "order": 3,
-                    "image": "http://localhost:5000/api/file/show?filename=bear.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=bear.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Bee",
                     "order": 4,
-                    "image": "http://localhost:5000/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Cat",
                     "order": 5,
-                    "image": "http://localhost:5000/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Carrot",
                     "order": 6,
-                    "image": "http://localhost:5000/api/file/show?filename=carrot.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=carrot.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Dog",
                     "order": 7,
-                    "image": "http://localhost:5000/api/file/show?filename=dog.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=dog.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Doll",
                     "order": 8,
-                    "image": "http://localhost:5000/api/file/show?filename=doll.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=doll.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Egg",
                     "order": 9,
-                    "image": "http://localhost:5000/api/file/show?filename=egg.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=egg.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Elephant",
                     "order": 10,
-                    "image": "http://localhost:5000/api/file/show?filename=elephant.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=elephant.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Frog",
                     "order": 11,
-                    "image": "http://localhost:5000/api/file/show?filename=frog.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=frog.png&path=/lessons/lesson-1/lesson-1-1/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Flower",
                     "order": 12,
-                    "image": "http://localhost:5000/api/file/show?filename=flower.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    "image": "/api/file/show?filename=flower.png&path=/lessons/lesson-1/lesson-1-1/images"
                 }
             ],
             "quiz": [
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=frog.png&path=/lessons/lesson-1/lesson-1-1/images",
-                    "order": 1
+                    "image": "/api/file/show?filename=frog.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "order": 1,
+                    "answer": "Frog"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=ant.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=ant.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 2,
                     "answer": "Ant"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=flower.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=flower.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 3,
                     "answer": "Flower"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=apple.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=apple.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 4,
                     "answer": "Apple"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 5,
                     "answer": "Bee"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=elephant.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=elephant.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 6,
                     "answer": "Elephant"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=dog.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=dog.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 7,
                     "answer": "Dog"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=egg.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=egg.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 8,
                     "answer": "Egg"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=doll.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=doll.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 9,
                     "answer": "Doll"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=carrot.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=carrot.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 10,
                     "answer": "Carrot"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=cat.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=cat.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 11,
                     "answer": "Cat"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=bear.png&path=/lessons/lesson-1/lesson-1-1/images",
+                    "image": "/api/file/show?filename=bear.png&path=/lessons/lesson-1/lesson-1-1/images",
                     "order": 12,
                     "answer": "Bear"
                 }
@@ -184,203 +188,206 @@
             "summary": {
                 "title": "Summary",
                 "text": "Let's sing this song ...",
-                "song": "http://localhost:5000/api/file/show?filename=song-lesson-1-2.mp3&path=/lessons/lesson-1/lesson-1-1/songs",
-                "image": "http://localhost:5000/api/file/show?filename=orang-nyanyi.png&path=/images"
+                "song": "/api/file/show?filename=song-lesson-1-2.mp3&path=/lessons/lesson-1/lesson-1-1/songs",
+                "image": "/api/file/show?filename=orang-nyanyi.png&path=/images"
             }
         },
         {
             "order": 1,
             "name": "Alphabet (G-M)",
             "description": "After this lesson, you will be able to recognize the letters G - M and some words starting with those letters",
+            "level": 1,
+            "exp": 500,
+            "enableSkip": true,
             "option": {
                 "quiz": true,
-                "question_type": "text,image",
+                "theory_type": "text,image",
                 "quiz_type": "text,image",
                 "summary": true,
                 "summary_type": "text,song"
             },
-            "questions": [
+            "theory": [
                 {
                     "title": "Lesson",
                     "question": "This is Grape",
                     "order": 1,
-                    "image": "http://localhost:5000/api/file/show?filename=grape.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=grape.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Goat",
                     "order": 2,
-                    "image": "http://localhost:5000/api/file/show?filename=goat.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=goat.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Hat",
                     "order": 3,
-                    "image": "http://localhost:5000/api/file/show?filename=hat.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=hat.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Hat",
                     "order": 4,
-                    "image": "http://localhost:5000/api/file/show?filename=heart.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=heart.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is In",
                     "order": 5,
-                    "image": "http://localhost:5000/api/file/show?filename=in.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=in.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Ill",
                     "order": 6,
-                    "image": "http://localhost:5000/api/file/show?filename=ill.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=ill.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Jump",
                     "order": 7,
-                    "image": "http://localhost:5000/api/file/show?filename=jump.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=jump.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Jam",
                     "order": 8,
-                    "image": "http://localhost:5000/api/file/show?filename=jam.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=jam.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Key",
                     "order": 9,
-                    "image": "http://localhost:5000/api/file/show?filename=key.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=key.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Kite",
                     "order": 10,
-                    "image": "http://localhost:5000/api/file/show?filename=kite.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=kite.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Lion",
                     "order": 11,
-                    "image": "http://localhost:5000/api/file/show?filename=lion.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=lion.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Lemon",
                     "order": 12,
-                    "image": "http://localhost:5000/api/file/show?filename=lemon.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=lemon.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Mouse",
                     "order": 13,
-                    "image": "http://localhost:5000/api/file/show?filename=mouse.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=mouse.png&path=/lessons/lesson-1/lesson-1-2/images"
                 },
                 {
                     "title": "Lesson",
                     "question": "This is Melon",
                     "order": 14,
-                    "image": "http://localhost:5000/api/file/show?filename=melon.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    "image": "/api/file/show?filename=melon.png&path=/lessons/lesson-1/lesson-1-2/images"
                 }
             ],
             "quiz": [
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=jump.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=jump.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 1,
                     "answer": "Jump"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=lion.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=lion.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 2,
                     "answer": "Lion"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=grape.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=grape.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 3,
                     "answer": "Grape"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=jam.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=jam.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 4,
                     "answer": "Jam"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=mouse.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=mouse.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 5,
                     "answer": "Mouse"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=hat.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=hat.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 6,
                     "answer": "Hat"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=in.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=in.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 7,
                     "answer": "In"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=goat.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=goat.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 8,
                     "answer": "Goat"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=key.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=key.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 9,
                     "answer": "Key"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=heart.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=heart.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 10,
                     "answer": "Heart"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=ill.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=ill.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 11,
                     "answer": "Ill"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=lemon.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=lemon.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 12,
                     "answer": "Lemon"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=kite.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=kite.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 13,
                     "answer": "Kite"
                 },
                 {
                     "title": "Quiz",
                     "question": "What's This ?",
-                    "image": "http://localhost:5000/api/file/show?filename=melon.png&path=/lessons/lesson-1/lesson-1-2/images",
+                    "image": "/api/file/show?filename=melon.png&path=/lessons/lesson-1/lesson-1-2/images",
                     "order": 14,
                     "answer": "Melon"
                 }
@@ -388,8 +395,8 @@
             "summary": {
                 "title": "Summary",
                 "text": "Let's sing this song ...",
-                "song": "http://localhost:5000/api/file/show?filename=song-lesson-1-2.mp3&path=/lessons/lesson-1/lesson-1-2/songs",
-                "image": "http://localhost:5000/api/file/show?filename=orang-nyanyi.png&path=/images"
+                "song": "/api/file/show?filename=song-lesson-1-2.mp3&path=/lessons/lesson-1/lesson-1-2/songs",
+                "image": "/api/file/show?filename=orang-nyanyi.png&path=/images"
             }
         }
     ],
@@ -402,4 +409,162 @@
     ],
     "successful": 0,
     "status": true
-}
+},
+{
+    "_id": {
+      "$oid": "62bee22833ea3abb5e5b0dcc"
+    },
+    "name": "Conversation",
+    "description": "These lessons cover a variety of topics to help beginner to advanced students improve their communication skills.",
+    "highscore": 0,
+    "level": 1,
+    "order": 2,
+    "rating": 0,
+    "required": false,
+    "lessons": [
+        {
+            "order": 1,
+            "name": "Nice To Meet You",
+            "description": "After this lesson, you will practice the letters of the alphabet and learn how to give and spell your name",
+            "level": 1,
+            "exp": 1000,
+            "enableSkip": false,
+            "option": {
+                "quiz": true,
+                "theory_type": "text",
+                "quiz_type": "text",
+                "summary": false,
+                "summary_type": ""
+            },
+            "theory": [
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: Hi, my name is Ms. Smith. Nice to meet you. $you: Hello, Ms. Smith. Nice to meet you too. Teacher: What is your name? $you: My name is $you. Teacher: $You? $you: Yes. Teacher: How do you spell your name? $you: $youSpell. Teacher: $youSpell, right? $you: Yes, that's right. Teacher: Thank you. $you: You're welcome.",
+                    "order": 1,
+                    "image": null
+                }
+            ],
+            "quiz": [
+                {
+                    "title": "Quiz, Answer that question : ",
+                    "question": "Hi, my name is Icksan. Nice to meet you. ",
+                    "image": null,
+                    "order": 1,
+                    "answer": "Hello, Icksan. Nice to meet you too."
+                },
+                {
+                    "title": "Quiz, Answer that question : ",
+                    "question": "What is your name ?. ",
+                    "image": null,
+                    "order": 2,
+                    "answer": "My name is $you."
+                },
+                {
+                    "title": "Quiz, Answer that question : ",
+                    "question": "How do you spell your name?. ",
+                    "image": null,
+                    "order": 3,
+                    "answer": "$youSpell."
+                }
+            ],
+            "summary": null
+        },
+        {
+            "order": 2,
+            "name": "How Are You?",
+            "description": "After this lesson, you will Learn how to talk about how you are and learn how to talk about where you are from and what language you speak",
+            "level": 1,
+            "exp": 1200,
+            "enableSkip": false,
+            "option": {
+                "quiz": true,
+                "theory_type": "text,image",
+                "quiz_type": "text,image",
+                "summary": false,
+                "summary_type": ""
+            },
+            "theory": [
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: How are you?. $you: I am tired.",
+                    "order": 1,
+                    "image": "/api/file/show?filename=tired.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
+                },
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: How are you?. $you: I am good.",
+                    "order": 2,
+                    "image": "/api/file/show?filename=good.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
+                },
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: How are you?. $you: I am sick.",
+                    "order": 3,
+                    "image": "/api/file/show?filename=sick.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
+                },
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: Where are you from?. $you: I am from Indonesian.",
+                    "order": 4,
+                    "image": "/api/file/show?filename=indonesian.jpg&path=/lessons/lesson-2/lesson-2-2/images"
+                },
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: Where are you from?. $you: I am from Japanese.",
+                    "order": 5,
+                    "image": "/api/file/show?filename=japan.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
+                },
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: Where are you from?. $you: I am from Thailand.",
+                    "order": 6,
+                    "image": "/api/file/show?filename=thai.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
+                },
+                {
+                    "title": "Please read this dialog and try to record !",
+                    "question": "Teacher: Hi, $you. How are you? $you: I am good, thanks. How about you? Teacher: I am tired. Where are you from? $you: I am from Indonesian. Where are you from?. Teacher: I am from England. $you: What language do you speak? Teacher: I speak English and Japanese. How about you? Do you speak Japanese?. $you: No, I don't. I speak Indonesian. Teacher: Do you speak English?. $you: Yes, I speak English. Teacher: Thanks, $you. See you later. $you: Goodbye. See you later.",
+                    "order": 7,
+                    "image": "/api/file/show?filename=thai.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
+                }
+            ],
+            "quiz": [
+                {
+                    "title": "Quiz, Answer that question : ",
+                    "question": "Hi $you. How are you ?. ",
+                    "image": "",
+                    "order": 1,
+                    "answer": "I am good, thanks. How about you ?."
+                },
+                {
+                    "title": "Quiz, Answer that question : ",
+                    "question": "Where are you from ?. ",
+                    "image": "",
+                    "order": 1,
+                    "answer": "I am from $country."
+                },
+                {
+                    "title": "Quiz, Answer that question : ",
+                    "question": "What language do you speak ?. ",
+                    "image": "",
+                    "order": 1,
+                    "answer": "I speak $language."
+                }
+            ]
+        }
+    ],
+    "comments": [
+        {
+            "name": "Icksan",
+            "comment": "Nice class",
+            "rating": 4.0
+        },
+        {
+            "name": "Restu",
+            "comment": "So easy for me",
+            "rating": 5.0
+        }
+    ],
+    "successful": 2,
+    "status": true
+  }
+]
