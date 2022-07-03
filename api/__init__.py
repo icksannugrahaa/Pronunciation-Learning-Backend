@@ -11,16 +11,16 @@ cors = CORS(app)
 jwt = JWTManager(app)
 
 #env
-app.config['API_BASE_URL'] = 'http://0.0.0.0:5000'
+app.config['API_BASE_URL'] = f"http://{os.getenv('HOST')}:{os.getenv('PORT')}"
 
 #upload config
-app.config["UPLOAD_FOLDER"] = './api/uploads'
+app.config["UPLOAD_FOLDER"] = os.getenv('UPLOAD_FOLDER')
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = set(['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'])
 app.config["ALLOWED_UPLOAD_BATCH_EXTENSIONS"] = set(['csv', 'xlsx', 'xls', 'xlt'])
 
 #jwt config
-app.config["JWT_SECRET_KEY"] = b'\x07\xd5\x8f\xd6k\x82\x1d\xd1\xde$\xe1\x98`\x91V}'
-app.config["SECRET_KEY"] = b'\x07\xd5\x8f\xd6k\x82\x1d\xd1\xde$\xe1\x98`\x91V}'
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
+app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config["JWT_HEADER_NAME"] = "Authorization"
 app.config["JWT_HEADER_TYPE"] = "Bearer"
@@ -32,8 +32,8 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 try:
     mongo = pymongo.MongoClient(
-        host="localhost",
-        port=27017,
+        host=os.getenv('DB_HOST'),
+        port=os.getenv('DB_PORT'),
         serverSelectionTimeoutMS=1000,
         username="sh",
         password="icksan0!"
