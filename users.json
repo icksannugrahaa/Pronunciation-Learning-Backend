@@ -1,0 +1,57 @@
+[
+    {
+        "_id": {
+            "$oid": "62c14e06724f5e52020be196"
+        },
+        "email": "icksannugrahaa@gmail.com",
+        "password": "$2a$12$sXphozZahCgpPqrEKRnJGeguQAnJhYj7.ALLAnxRnrGihBYirnrSe",
+        "achievement": [
+            {
+                "name": "Admin Achievement",
+                "description": "This is achievement for being an admin!",
+                "image": null,
+                "level": [
+                    {
+                        "name": "Admin Achievement Level 1",
+                        "image": null,
+                        "status": true
+                    },
+                    {
+                        "name": "Admin Achievement Level 2",
+                        "image": null,
+                        "status": false
+                    },
+                    {
+                        "name": "Admin Achievement Level 3",
+                        "image": null,
+                        "status": false
+                    }
+                ]
+            }
+        ],
+        "googleSignIn": true,
+        "name": "Icksan Nugraha",
+        "exp": 0,
+        "level": 1,
+        "avatar": null,
+        "gender": "male",
+        "biodata": null,
+        "phoneNumber": "083822145705"
+    },
+    {
+        "_id": {
+            "$oid": "62c1aad7724f5e52020be19c"
+        },
+        "email": "test@gmail.com",
+        "password": "$2a$12$sXphozZahCgpPqrEKRnJGeguQAnJhYj7.ALLAnxRnrGihBYirnrSe",
+        "achievement": [],
+        "googleSignIn": false,
+        "name": "Thomas Alfa Indomaret",
+        "exp": 0,
+        "level": 1,
+        "avatar": null,
+        "gender": "male",
+        "biodata": null,
+        "phoneNumber": "081882391238128"
+    }
+]

@@ -1,0 +1,14 @@
+# DONT FORGET TO make .env file, this is a example config
+
+HOST='xxx.xxx.xxx'
+PORT=5000
+DEBUG=True
+
+UPLOAD_FOLDER='./api/uploads'
+JWT_SECRET_KEY="xxxxxx!"
+SECRET_KEY="xxxxxx!"
+
+DB_HOST="localhost"
+DB_PORT=27017
+DB_USERNAME="xxxxxxxx"
+DB_PASSWORD="xxxxxxxx"
