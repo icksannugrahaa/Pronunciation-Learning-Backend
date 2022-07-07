@@ -1,7 +1,6 @@
 from flask import request
 from api import db
 from bson.objectid import ObjectId
-import uuid
 from . import auth
 import datetime
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, get_jwt
@@ -21,13 +20,15 @@ def me():
     if request.method == 'POST':
         if 'Authorization' in request.headers:
             email = get_jwt_identity()
+            token = request.headers['Authorization']
+            currentToken = token.split(' ')
 
             # Access DB
-            cursor = accountDB.find({"email": email}, {'name': 1, '_id': 0, 'email': 1, 'achievement': 1, 'status': 1, 'googleSignIn': 1, 'biodata': 1, 'phoneNumber': 1, 'gender': 1,
-                                                       'exp': 1, 'level': 1, 'avatar': 1})
+            cursor = list(accountDB.find({"email": email, "token": currentToken[1]}, {'name': 1, '_id': 0, 'email': 1, 'achievement': 1, 'status': 1, 'googleSignIn': 1, 'biodata': 1, 'phoneNumber': 1, 'gender': 1,
+                                                            'exp': 1, 'level': 1, 'avatar': 1}))
 
-            if cursor.count() == 0:
-                results['message'] = "Account not found!"
+            if len(cursor) == 0:
+                results['message'] = "Your session is expired!"
                 results['status'] = "error"
                 response = 400
             else:
@@ -42,7 +43,7 @@ def me():
             response = 403
     else:
         results['message'] = "Method Not Alowed"
-        results['status'] = 'error'
+        results['status'] = "error"
         response = 405
     return results, response
 
@@ -55,26 +56,26 @@ def login():
     if request.method == 'POST':
         if 'email' in request.form and 'password' in request.form:
             email = request.form['email']
-            password = str(request.form['password']).encode('utf-8')
+            password = str(request.form['password']).encode("utf-8")
             # Access DB
-            cursor = accountDB.find({"email": email}, {'name': 1, '_id': 0, 'email': 1, 'achievement': 1, 'status': 1, 'googleSignIn': 1, 'biodata': 1, 'phoneNumber': 1, 'gender': 1,
-                                                       'exp': 1, 'level': 1, 'avatar': 1})
+            finData = list(accountDB.find({"email": email}, {'name': 1, '_id': 1, 'email': 1, 'achievement': 1, 'status': 1, 'googleSignIn': 1, 'biodata': 1, 'phoneNumber': 1, 'gender': 1,
+                                                             'exp': 1, 'level': 1, 'avatar': 1, 'password': 1}))
 
-            if cursor.count({"email": email}) == 0:
-                results['message'] = "Account not found!"
+            if len(finData) == 0:
+                results['message'] = "Email not found!"
                 results['status'] = "error"
                 response = 200
             else:
-                for data in cursor:
+                for data in finData:
                     try:
+                        print(bcrypt.checkpw(password, data['password']))
+                        print(email)
+                        print(password)
+                        
                         if bcrypt.checkpw(password, data['password']):
                             data['_id'] = str(data["_id"])
-                            if(data['role'] == 'Admin Parkir'):
-                                access_token = create_access_token(
-                                    identity=data['regNumber'], expires_delta=datetime.timedelta(days=31))
-                            else:
-                                access_token = create_access_token(
-                                    identity=data['regNumber'], expires_delta=datetime.timedelta(seconds=5))
+                            access_token = create_access_token(
+                                identity=data['email'], expires_delta=datetime.timedelta(minutes=30))
 
                             accountDB.update_one(
                                 {
@@ -109,7 +110,7 @@ def login():
             response = 200
     else:
         results['message'] = "Method Not Alowed"
-        results['status'] = 'error'
+        results['status'] = "error"
         response = 405
 
     return results, response
@@ -126,10 +127,10 @@ def expire():
             currentToken = token.split(' ')
 
             # Access DB
-            cursor = accountDB.find(
-                {"token": currentToken[1]})
+            cursor = list(accountDB.find(
+                {"token": currentToken[1]}))
 
-            if cursor.count() == 0:
+            if len(cursor) == 0:
                 results['status'] = "error"
                 results['message'] = "Your token is expired, Please login again!"
                 response = 200
@@ -159,7 +160,7 @@ def expire():
             response = 200
     else:
         results['message'] = "Method Not Alowed"
-        results['status'] = 'error'
+        results['status'] = "error"
         response = 405
 
     return results, response
@@ -177,12 +178,12 @@ def logout():
         if 'Authorization' in request.headers:
             token = request.headers['Authorization']
             currentToken = token.split(' ')
-
+            
             # Access DB
-            cursor = accountDB.find(
-                {"token": currentToken[1]})
+            cursor = list(accountDB.find(
+                {"token": currentToken[1]}))
 
-            if cursor.count() == 0:
+            if len(cursor) == 0:
                 results['status'] = "error"
                 results['message'] = "Your token is expired, please login again!"
                 response = 200
@@ -193,6 +194,7 @@ def logout():
                         results['message'] = "Logout Success!"
                         response = 200
                         jti = get_jwt()["jti"]
+                        print(jti)
                         now = datetime.datetime.now()
                         tokenCollection.insert_one({
                             'jti': jti,

@@ -17,9 +17,10 @@ def process_data(request):
     custom_order = {'sort_by': 'order'}
     pageData = dataUtils.get_pagination_data(request, custom_order)
     
-    if 'search' in request.form and request.form['search'] != '':
+    if 'search' in request.form and request.form['search'] != '' and request.form['search'] != 'null':
         query['name'] = re.compile(
             request.form['search'], re.IGNORECASE)
+        
     findData = moduleDB.find(query).sort(pageData['sortBy'], pageData['orderBy']).skip(pageData['offset']).limit(pageData['limit'])
     findAllData = moduleDB.find(query).sort(pageData['sortBy'], pageData['orderBy'])
     
@@ -46,6 +47,7 @@ def index():
             data = process_data(request)
             filterData = data['data']
             allData = data['paginated']
+            
             if len(filterData) == 0:
                 results['message'] = "Data not found!"
                 results['status'] = "success"
