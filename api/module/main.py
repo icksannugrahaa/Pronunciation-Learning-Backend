@@ -5,7 +5,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_cors import cross_origin
 import re
 import api.utils.data_utils as dataUtils
-import pymongo
+from bson.objectid import ObjectId
 
 # initial db
 moduleDB = db.modules
@@ -20,7 +20,9 @@ def process_data(request):
     if 'search' in request.form and request.form['search'] != '' and request.form['search'] != 'null':
         query['name'] = re.compile(
             request.form['search'], re.IGNORECASE)
-        
+    if 'find' in request.form and request.form['find'] != '' and request.form['find'] != 'null':
+        query['_id'] = ObjectId(request.form['find'])
+    print(query)
     findData = moduleDB.find(query).sort(pageData['sortBy'], pageData['orderBy']).skip(pageData['offset']).limit(pageData['limit'])
     findAllData = moduleDB.find(query).sort(pageData['sortBy'], pageData['orderBy'])
     

@@ -6,6 +6,8 @@ import datetime
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, get_jwt
 from flask_cors import cross_origin
 import bcrypt
+from api.utils.mail_utils import Mail
+import api.utils.data_utils as dataUtils
 
 tokenCollection = db.blocked_tokens
 accountDB = db.accounts
@@ -48,6 +50,43 @@ def me():
     return results, response
 
 
+@auth.route('/send-code', methods=['POST'])
+@jwt_required()
+@cross_origin()
+def send_code():
+    results = {}
+    responses = 500
+    results['message'] = "Internal Server Error!"
+    results['status'] = 'error'
+    if request.method == 'POST':
+        updatedAt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        currentAccount = request.form['email'] if 'email' in request.form and request.form['email'] != '' and request.form['email'] != 'null' else get_jwt_identity()
+        code = dataUtils.code_generator()
+        
+        mail = Mail()
+        mail.send(currentAccount, code, '', '', 'send-code')
+        
+        updateData = {
+            'code': code,
+            'updatedAt': updatedAt
+        }
+        
+        accountDB.update_one(
+            {'email': get_jwt_identity()},
+            {'$set': updateData}
+        )
+        
+        results['message'] = "Code verification has been send!"
+        results['status'] = 'success'
+        responses = 200
+    else:
+        results['message'] = "Method Not Alowed"
+        results['status'] = 'error'
+        responses = 405
+    
+    return results, responses
+
+
 @auth.route('/login', methods=['POST'])
 @cross_origin()
 def login():
@@ -66,20 +105,20 @@ def login():
                 results['status'] = "error"
                 response = 200
             else:
-                for data in finData:
+                if finData[0]['status'] == False:
+                    results['message'] = "Please confirm your account first!"
+                    results['status'] = "error"
+                    response = 200
+                else:
                     try:
-                        print(bcrypt.checkpw(password, data['password']))
-                        print(email)
-                        print(password)
-                        
-                        if bcrypt.checkpw(password, data['password']):
-                            data['_id'] = str(data["_id"])
+                        if bcrypt.checkpw(password, finData[0]['password']):
+                            finData[0]['_id'] = str(finData[0]["_id"])
                             access_token = create_access_token(
-                                identity=data['email'], expires_delta=datetime.timedelta(minutes=30))
+                                identity=finData[0]['email'], expires_delta=datetime.timedelta(minutes=30))
 
                             accountDB.update_one(
                                 {
-                                    "_id": ObjectId(data["_id"])
+                                    "_id": ObjectId(finData[0]["_id"])
                                 },
                                 {
                                     "$set": {
@@ -87,12 +126,12 @@ def login():
                                     }
                                 }
                             )
-                            data.pop('password', None)
-                            data.pop('_id', None)
+                            finData[0].pop('password', None)
+                            finData[0].pop('_id', None)
                             results['message'] = "Login Success!"
                             results['status'] = "success"
                             results['token'] = access_token
-                            results['data'] = data
+                            results['data'] = finData[0]
                             response = 200
                         else:
                             results['message'] = "Password doesn't match!"

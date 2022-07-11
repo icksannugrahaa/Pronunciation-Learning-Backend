@@ -1,5 +1,7 @@
 from flask import request
 import pymongo
+import string
+import random
 
 def validateForm(request, event, modulesPath):
     reqData = {}
@@ -65,3 +67,6 @@ def get_paginated_list(results, start, limit, current_page):
     # finally extract result according to bounds
     # obj['results'] = results[(start):(start + limit)]
     return obj
+
+def code_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
