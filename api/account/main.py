@@ -20,7 +20,7 @@ from api.utils.mail_utils import Mail
 from urllib.parse import urlparse
 
 accountCollection = db.accounts
-cardCollection = db.cards
+progressCollection = db.progress
 apiModule = 'account'
 
 def validateForm(request, event):
@@ -374,6 +374,13 @@ def update_email():
                     accountCollection.update_one(
                         {"email": currentAccount},
                         {"$set": updateData}
+                    )
+                    progressCollection.update_one(
+                        {"email": currentAccount},
+                        {"$set": {
+                            'email': request.form['email'],
+                            'updatedAt': updatedAt
+                        }}
                     )
                     accountNew = list(accountCollection.find({'email': request.form['email']}))[0]
                     accountNew['_id'] = str(accountNew['_id'])

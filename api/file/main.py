@@ -21,6 +21,8 @@ def uploadFile(request):
             responses = 400
         else:
             file = request.files['file']
+            mimetype = file.content_type
+            filetype = mimetype.split('/')[0]
             if file.filename == '':
                 results['message'] = "File not found!"
                 results['status'] = False
@@ -28,6 +30,8 @@ def uploadFile(request):
             else:
                 if file and allowed_file(file.filename):
                     try:
+                        fileUrl = ""
+                        
                         # get file name
                         filename = secure_filename(file.filename)
                         filePath = request.form['path'] if 'path' in request.form else "images"
@@ -43,40 +47,47 @@ def uploadFile(request):
                             os.makedirs(smallFileDir)
                         if not os.path.exists(mediumFileDir):
                             os.makedirs(mediumFileDir)
+                        if not os.path.exists(originalFileDir):
+                            os.makedirs(originalFileDir)
+                        
+                        # save file
+                        fileUrl = os.path.join(originalFileDir, filename)
+                        file.save(fileUrl)
+                        
+                        if filetype == 'audio' :
+                            results['view'] = app.config['API_BASE_URL']+"/api/file/show?filename="+filename+"&path=/"+filePath
+                            results['download'] = app.config['API_BASE_URL']+"/api/file/download?filename="+filename+"&path=/"+filePath
+                        elif filetype == 'image':
+                           
+                            #resize image
+                            openImage = Image.open(os.path.join(originalFileDir, filename))
+                            
+                            sm = openImage.resize((160,160),Image.ANTIALIAS)
+                            md = openImage.resize((540,540),Image.ANTIALIAS)
+                            lg = openImage.resize((1080,1080),Image.ANTIALIAS)
+                            imageSMUrl = os.path.join(smallFileDir, filename)
+                            imageMDUrl = os.path.join(mediumFileDir, filename)
+                            imageLGUrl = os.path.join(largeFileDir, filename)
+                            
+                            sm.save(imageSMUrl,optimize=True,quality=95)
+                            md.save(imageMDUrl,optimize=True,quality=95)
+                            lg.save(imageLGUrl,optimize=True,quality=95)
 
-                        # save image
-                        imageUrl = os.path.join(originalFileDir, filename)
-                        
-                        file.save(imageUrl)
-                        
-                        #resize image
-                        openImage = Image.open(os.path.join(originalFileDir, filename))
-                        
-                        sm = openImage.resize((160,160),Image.ANTIALIAS)
-                        md = openImage.resize((540,540),Image.ANTIALIAS)
-                        lg = openImage.resize((1080,1080),Image.ANTIALIAS)
-                        imageSMUrl = os.path.join(smallFileDir, filename)
-                        imageMDUrl = os.path.join(mediumFileDir, filename)
-                        imageLGUrl = os.path.join(largeFileDir, filename)
-                        
-                        sm.save(imageSMUrl,optimize=True,quality=95)
-                        md.save(imageMDUrl,optimize=True,quality=95)
-                        lg.save(imageLGUrl,optimize=True,quality=95)
-
-                        # rename image
-                        renameImage = uuid.uuid4()
-                        fileType = filename.split('.')
-                        newImageName = str(renameImage)+"."+fileType[len(fileType)-1]
-                        os.rename(imageUrl, os.path.join(originalFileDir, newImageName))
-                        os.rename(imageSMUrl, os.path.join(smallFileDir, newImageName))
-                        os.rename(imageMDUrl, os.path.join(mediumFileDir, newImageName))
-                        os.rename(imageLGUrl, os.path.join(largeFileDir, newImageName))
+                            # rename image
+                            renameImage = uuid.uuid4()
+                            fileType = filename.split('.')
+                            newImageName = str(renameImage)+"."+fileType[len(fileType)-1]
+                            os.rename(fileUrl, os.path.join(originalFileDir, newImageName))
+                            os.rename(imageSMUrl, os.path.join(smallFileDir, newImageName))
+                            os.rename(imageMDUrl, os.path.join(mediumFileDir, newImageName))
+                            os.rename(imageLGUrl, os.path.join(largeFileDir, newImageName))
+                            results['view'] = app.config['API_BASE_URL']+"/api/file/show?filename="+newImageName+"&path=/"+filePath
+                            results['download'] = app.config['API_BASE_URL']+"/api/file/download?filename="+newImageName+"&path=/"+filePath
+                            
 
                         # return
                         results['status'] = True
                         results['message'] = "Upload success !"
-                        results['view'] = app.config['API_BASE_URL']+"/api/file/show?filename="+newImageName+"&path=/"+filePath
-                        results['download'] = app.config['API_BASE_URL']+"/api/file/download?filename="+newImageName+"&path=/"+filePath
                         responses = 200
                     except Exception as e:
                         print(e)
