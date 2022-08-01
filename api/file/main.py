@@ -54,6 +54,8 @@ def uploadFile(request):
                         fileUrl = os.path.join(originalFileDir, filename)
                         file.save(fileUrl)
                         
+                        print("File type : "+filetype)
+                        
                         if filetype == 'audio' :
                             results['view'] = app.config['API_BASE_URL']+"/api/file/show?filename="+filename+"&path=/"+filePath
                             results['download'] = app.config['API_BASE_URL']+"/api/file/download?filename="+filename+"&path=/"+filePath
@@ -83,7 +85,9 @@ def uploadFile(request):
                             os.rename(imageLGUrl, os.path.join(largeFileDir, newImageName))
                             results['view'] = app.config['API_BASE_URL']+"/api/file/show?filename="+newImageName+"&path=/"+filePath
                             results['download'] = app.config['API_BASE_URL']+"/api/file/download?filename="+newImageName+"&path=/"+filePath
-                            
+                        
+                        
+                        print("Res Upload : "+str(results))
 
                         # return
                         results['status'] = True

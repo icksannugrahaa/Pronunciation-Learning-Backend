@@ -114,7 +114,7 @@ def login():
                         if bcrypt.checkpw(password, finData[0]['password']):
                             finData[0]['_id'] = str(finData[0]["_id"])
                             access_token = create_access_token(
-                                identity=finData[0]['email'], expires_delta=datetime.timedelta(minutes=30))
+                                identity=finData[0]['email'], expires_delta=datetime.timedelta(hours=24))
 
                             accountDB.update_one(
                                 {
