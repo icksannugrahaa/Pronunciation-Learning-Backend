@@ -7,11 +7,14 @@ from flask_cors import cross_origin
 import re
 import api.utils.data_utils as dataUtils
 from bson.objectid import ObjectId
+import datetime
 
 # initial db
 progressDB = db.progress
 moduleDB = db.modules
 accountCollection = db.accounts
+levelCollection = db.levels
+scoreboardCollection = db.scoreboards
 
 
 def process_data(request, account):
@@ -21,12 +24,15 @@ def process_data(request, account):
     custom_order = {'sort_by': 'order'}
     pageData = dataUtils.get_pagination_data(request, custom_order)
     query['email'] = account[0]['email']
-
+    print(request.form)
     # if 'search' in request.form and request.form['search'] != '' and request.form['search'] != 'null':
     #     query['email'] = re.compile(
     #         request.form['search'], re.IGNORECASE)
-    # if 'find' in request.form and request.form['find'] != '' and request.form['find'] != 'null':
-    #     query['_id'] = ObjectId(request.form['find'])
+    if 'find' in request.form and request.form['find'] != '' and request.form['find'] != 'null':
+        lessonSplit = request.form['find'].split('-')
+        print(lessonSplit)
+        query['allProgress.order'] = {"$eq": int(lessonSplit[0])}
+        # query['progress.lesson'] = request.form['lesson']
     # print(query)
     findData = progressDB.find(query).sort(pageData['sortBy'], pageData['orderBy']).skip(
         pageData['offset']).limit(pageData['limit'])
@@ -45,10 +51,11 @@ def process_data(request, account):
     else:
         return {'data': output, 'paginated': dataUtils.get_paginated_list(outputs, pageData['offset'], pageData['limit'], pageData['page'])}
 
+
 def findNextProgress(request):
     lessonSplit = request.form['lesson'].split('-')
     progressSplit = request.form['progress'].split('-')
-                
+
     # set up next progress
     nextProgressData = {}
     tempNextProgressData = []
@@ -100,7 +107,8 @@ def findNextProgress(request):
                 else:
                     if nextLessonType == "theory":
                         nextLessonType = "quiz"
-                        nextLessonData = checkNextModule[nextModuleID-1]['lessons'][nextLessonID-1][nextLessonType]
+                        nextLessonData = checkNextModule[nextModuleID -
+                                                         1]['lessons'][nextLessonID-1][nextLessonType]
                         if nextLessonData is not None:
                             nextProgressData = {
                                 'lesson': request.form['lesson'],
@@ -113,7 +121,8 @@ def findNextProgress(request):
                             nextProgressIsAvailable = False
                     elif nextLessonType == "quiz":
                         nextLessonType = "summary"
-                        nextLessonData = checkNextModule[nextModuleID-1]['lessons'][nextLessonID-1][nextLessonType]
+                        nextLessonData = checkNextModule[nextModuleID -
+                                                         1]['lessons'][nextLessonID-1][nextLessonType]
                         if nextLessonData is not None:
                             nextProgressData = {
                                 'lesson': request.form['lesson'],
@@ -173,8 +182,9 @@ def findNextProgress(request):
                 }
                 nextProgressIsAvailable = False
             else:
-                nextProgressIsAvailable = False  
+                nextProgressIsAvailable = False
     return {'progressData': nextProgressData, 'progress': nextProgress}
+
 
 @progress.route('/data', methods=['POST'])
 @jwt_required()
@@ -246,12 +256,11 @@ def store():
                     'status': "in_progress"
                 }
 
-                tempScoreData = []
-                tempScoreData.append(scoreCode)
                 scoreData = {
                     'time': request.form['time'],
                     'score': request.form['score'],
-                    'scoreDetail': tempScoreData
+                    'quest': request.form['quest'],
+                    'answer': request.form['answer'],
                 }
 
                 progressData = {
@@ -286,20 +295,20 @@ def store():
                     # check progress is never save before ?
                     progressIsAvailable = list(
                         progressDB.find({'email': currentAccount}))
-                    
-                     # find next progress    
+
+                    # find next progress
                     progress = findNextProgress(request)
                     nextProgressData = progress['progressData']
                     nextProgress = progress['progress']
-                    tempNextProgressData = [] 
+                    tempNextProgressData = []
                     tempNextProgressData.append(nextProgressData)
-                    
+
                     print(nextProgressData)
                     print(nextProgress)
                     print(tempNextProgressData)
                     if len(progressIsAvailable) > 0:
                         print('masuk sini 1')
-                        #check how much this account doing progress
+                        # check how much this account doing progress
                         if len(progressIsAvailable[0]['allProgress']) > 0:
                             print('masuk sini 2')
                             for iprogres, progress in enumerate(progressIsAvailable[0]['allProgress']):
@@ -313,6 +322,8 @@ def store():
                                         for progressItem in progress['progress']:
                                             if progressItem['lesson'] == request.form['lesson'] and progressItem['progress'] == request.form['progress'] and progressItem['status'] != 'done':
                                                 print('masuk sini 5')
+                                                print(nextProgressData['lesson'])
+                                                print(request.form['lesson'])
                                                 progressDB.update_one(
                                                     {
                                                         'email': currentAccount
@@ -321,11 +332,11 @@ def store():
                                                         "$set": {
                                                             'lastLearn': lastLearn,
                                                             'allProgress.$[module].currentProgress': currentProgressCode,
-                                                            'allProgress.$[module].status': "done" if progressSplit[0] == "s" else "in_progress",
+                                                            'allProgress.$[module].status': "done" if progressSplit[0] == "s" and lessonSplit[0] != nextProgressData['lesson'].split('-')[0] else "in_progress",
                                                             'allProgress.$[module].progress.$[lesson]': progressData
                                                         }
                                                     },
-                                                    array_filters= [
+                                                    array_filters=[
                                                         {
                                                             "module.order": {
                                                                 "$eq": int(lessonSplit[0])
@@ -342,7 +353,7 @@ def store():
                                                     ]
                                                 )
                                                 if nextProgressData and progressSplit[0] != "s":
-                                                    print('masuk sini 6')
+                                                    print('masuk sini 7')
                                                     progressDB.update_one(
                                                         {
                                                             'email': currentAccount
@@ -352,8 +363,8 @@ def store():
                                                                 'allProgress.$[module].progress': nextProgressData
                                                             }
                                                         },
-                                                        upsert= False,
-                                                        array_filters= [
+                                                        upsert=False,
+                                                        array_filters=[
                                                             {
                                                                 "module.order": {
                                                                     "$eq": int(lessonSplit[0])
@@ -363,7 +374,83 @@ def store():
                                                     )
                                                     break
                                                 elif nextProgressData and progressSplit[0] == "s" and lessonSplit[0] == nextProgressData['lesson'].split('-')[0]:
-                                                    print('masuk sini 6')
+                                                    print('masuk sini 8')
+                                                    print(account[0]['exp'])
+
+                                                    # update exp
+                                                    lessonExp = checkCurrentModule[0]['lessons'][int(
+                                                        lessonSplit[1])-1]['exp']
+                                                    currentExp = account[0]['exp'] + lessonExp
+                                                    levelFind = list(levelCollection.find({'exp': {
+                                                        "$gte": currentExp
+                                                    }}).limit(2))
+                                                    
+                                                    newLevel = 0
+                                                    newExp = 0
+                                                    newExpNext = 0
+                                                    newLevelName = 'Beginner'
+                                                    if currentExp > account[0]['exp']:
+                                                        newExp = currentExp
+                                                        if currentExp >= levelFind[0]['exp']:
+                                                            newLevel = int(levelFind[0]['level'])
+                                                            newExpNext = int(levelFind[1]['exp']) if len(levelFind) > 1 else 99999999
+                                                            newLevelName = levelFind[0]['name']
+                                                            results['levelUp'] = True
+                                                        else:
+                                                            newLevel = int(account[0]['level'])
+                                                            newExpNext = int(account[0]['expNext'])
+                                                            newLevelName = account[0]['name']
+                                                            
+                                                    accountCollection.update_one({
+                                                        "email": currentAccount
+                                                    },
+                                                    {
+                                                        "$set": {
+                                                            "exp": newExp,
+                                                            "level": newLevel,
+                                                            "expNext": newExpNext,
+                                                            "levelName": newLevelName
+                                                        }       
+                                                    })
+                                                            
+                                                    # if currentExp >= levelFind[0]['exp']:
+                                                    #     accountCollection.update_one({
+                                                    #         "email": currentAccount
+                                                    #     },
+                                                    #     {
+                                                    #         "$set": {
+                                                    #             "exp": currentExp,
+                                                    #             "level": int(levelFind[0]['level']),
+                                                    #             "expNext": int(levelFind[0]['exp']) if len(levelFind) > 1 else int(levelFind[0]['exp']),
+                                                    #             "levelName": levelFind[0]['name'] if len(levelFind) > 1 else levelFind[0]['name']
+                                                    #         }       
+                                                    #     })
+                                                    # # if level up
+                                                    # if str(account[0]['level']) != str(int(levelFind[0]['level'])) and int(levelFind[0]['level']) > account[0]['level']:
+                                                        # results['levelUp'] = True
+                                                        
+                                                    # save to scoreboard
+                                                    checkScoreBoard = list(scoreboardCollection.find({'email': currentAccount, 'lesson': request.form['lesson']}))
+                                                    scoreboardData = {
+                                                        "name": account[0]['name'],
+                                                        "score": float(request.form['score']),
+                                                        "time": int(request.form['time']),
+                                                        "email": account[0]['email'],
+                                                        "avatar": account[0]['avatar'],
+                                                        "lesson": request.form['lesson'],
+                                                        "createdAt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                                    }
+                                                    if len(checkScoreBoard) > 0:
+                                                        scoreboardCollection.update_one({
+                                                            'email': currentAccount
+                                                        },
+                                                        {
+                                                            '$set': scoreboardData
+                                                        })
+                                                    else:
+                                                        scoreboardCollection.insert_one(scoreboardData)
+
+                                                    # update progress + next progress
                                                     progressDB.update_one(
                                                         {
                                                             'email': currentAccount
@@ -373,8 +460,8 @@ def store():
                                                                 'allProgress.$[module].progress': nextProgressData
                                                             }
                                                         },
-                                                        upsert= False,
-                                                        array_filters= [
+                                                        upsert=False,
+                                                        array_filters=[
                                                             {
                                                                 "module.order": {
                                                                     "$eq": int(lessonSplit[0])
@@ -383,8 +470,86 @@ def store():
                                                         ]
                                                     )
                                                 else:
-                                                    print('masuk sini 7')
-                                                    tempNextProgressData.append(nextProgressData)
+                                                    print(checkCurrentModule[0]['lessons'])
+                                                    print('masuk sini 9')
+                                                    # update exp
+                                                    lessonExp = checkCurrentModule[0]['lessons'][int(
+                                                        lessonSplit[1])-1]['exp']
+                                                    print(lessonExp)
+                                                    currentExp = account[0]['exp'] + lessonExp
+                                                    print(currentExp)
+                                                    levelFind = list(levelCollection.find({'exp': {
+                                                        "$gte": currentExp
+                                                    }}).limit(2))
+                                                    
+                                                    newLevel = 0
+                                                    newExp = 0
+                                                    newExpNext = 0
+                                                    newLevelName = 'Beginner'
+                                                    if currentExp > account[0]['exp']:
+                                                        newExp = currentExp
+                                                        if currentExp >= levelFind[0]['exp']:
+                                                            newLevel = int(levelFind[0]['level'])
+                                                            newExpNext = int(levelFind[1]['exp']) if len(levelFind) > 1 else 99999999
+                                                            newLevelName = levelFind[0]['name']
+                                                            results['levelUp'] = True
+                                                        else:
+                                                            newLevel = int(account[0]['level'])
+                                                            newExpNext = int(account[0]['expNext'])
+                                                            newLevelName = account[0]['name']
+                                                            
+                                                    accountCollection.update_one({
+                                                        "email": currentAccount
+                                                    },
+                                                    {
+                                                        "$set": {
+                                                            "exp": newExp,
+                                                            "level": newLevel,
+                                                            "expNext": newExpNext,
+                                                            "levelName": newLevelName
+                                                        }       
+                                                    })
+                                                    
+                                                    # if levelFind[0]['exp'] >= currentExp:
+                                                    #     accountCollection.update_one({
+                                                    #         "email": currentAccount
+                                                    #     },
+                                                    #     {
+                                                    #         "$set": {
+                                                    #             "exp": currentExp,
+                                                    #             "level": int(levelFind[0]['level']),
+                                                    #             "expNext": int(levelFind[0]['exp']) if len(levelFind) > 1 else int(levelFind[0]['exp']),
+                                                    #             "levelName": levelFind[0]['name'] if len(levelFind) > 1 else levelFind[0]['name']
+                                                    #         }       
+                                                    #     })
+                                                    # # if level up
+                                                    # if str(account[0]['level']) != str(int(levelFind[0]['level'])) and int(levelFind[0]['level']) > account[0]['level']:
+                                                    #     results['levelUp'] = True
+                                                        
+                                                    # save to scoreboard
+                                                    checkScoreBoard = list(scoreboardCollection.find({'email': currentAccount, 'lesson': request.form['lesson']}))
+                                                    scoreboardData = {
+                                                        "name": account[0]['name'],
+                                                        "score": float(request.form['score']),
+                                                        "time": int(request.form['time']),
+                                                        "email": account[0]['email'],
+                                                        "avatar": account[0]['avatar'],
+                                                        "lesson": request.form['lesson'],
+                                                        "createdAt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                                    }
+                                                    if len(checkScoreBoard) > 0:
+                                                        scoreboardCollection.update_one({
+                                                            'email': currentAccount
+                                                        },
+                                                        {
+                                                            '$set': scoreboardData
+                                                        })
+                                                    else:
+                                                        scoreboardCollection.insert_one(scoreboardData)
+
+                                                    # update progress + next progress
+                                                    tempNextProgressData.append(
+                                                        nextProgressData)
                                                     nextProgress['progress'] = tempNextProgressData
                                                     progressDB.update_one(
                                                         {
@@ -409,7 +574,7 @@ def store():
                                                 'lastLearn': lastLearn
                                             },
                                             "$push": {
-                                                'allProgress': currentProgress   
+                                                'allProgress': currentProgress
                                             }
                                         }
                                     )
@@ -430,7 +595,8 @@ def store():
                             )
                     else:
                         if request.form['status'] == "done":
-                            currentProgress['progress'].append(nextProgressData)
+                            currentProgress['progress'].append(
+                                nextProgressData)
                         progressDB.insert_one({
                             "email": currentAccount,
                             "lastLearn": lastLearn,
@@ -440,6 +606,7 @@ def store():
 
                     results['message'] = "Data successfully saved!"
                     results['status'] = "success"
+                    results['levelUp'] = False if "levelUp" not in results else results['levelUp']
                     response = 200
                 else:
                     results['message'] = "Module not found!"

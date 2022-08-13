@@ -24,112 +24,118 @@ def count_score(str1, str2, time, level):
     wrongAnswer = 0
     finalString = ""
     wordOut = 0
-
-    #penentuan bobot kelasahan
-    totalScore = 100
-    if level == "beginner": # benar 100% - salah 90%
-        wordOutScore = (0.2*totalCharacters) # 20% dari kesalahan
-        timeScore = (0.3*totalCharacters)# 30% dari kesalahan
-        timeScore = math.floor(timeScore * round(time/totalCharacters)) # waktu di bulatkan ke nilai terkecil
-        wrongScore = (0.4*totalCharacters) # 40% dari kesalahan
-        rightScore = totalCharacters # 100% dari nilai benar
-    elif level == "intermediate":  # benar 100% - salah 100%
-        wordOutScore = round(0.2*totalCharacters) # 20% dari kesalahan
-        timeScore = round(0.3*totalCharacters) # 30% dari kesalahan
-        timeScore = timeScore * round(time/(totalCharacters/2)) # waktu di bulatkan
-        wrongScore = round(0.5*totalCharacters) # 50% dari kesalahan
-        rightScore = totalCharacters
-    elif level == "advanced": # benar 100% - salah 110%
-        wordOutScore = round(0.2*totalCharacters) # 20% dari kesalahan
-        timeScore = round(0.4*totalCharacters) # 40% dari kesalahan
-        timeScore = timeScore * round(time/(totalCharacters/3))
-        wrongScore = round(0.5*totalCharacters) # 50% dari kesalahan
-        rightScore = totalCharacters
+    try:
         
-    # Remove special characters
-    str1rm = ''
-    str2rm = ''
-    for data in str1.split(' '):
-        str1rm += ''.join(char for char in data if char.isalnum())
-        str1rm += ' '
-    for data in str2.split(' '): 
-        str2rm += ''.join(char for char in data if char.isalnum())
-        str2rm += ' '
+        #penentuan bobot kelasahan
+        totalScore = 100
+        if level == "beginner": # benar 100% - salah 90%
+            wordOutScore = (0.2*totalCharacters) # 20% dari kesalahan
+            timeScore = (0.3*totalCharacters)# 30% dari kesalahan
+            timeScore = math.floor(timeScore * round(time/totalCharacters)) # waktu di bulatkan ke nilai terkecil
+            wrongScore = (0.4*totalCharacters) # 40% dari kesalahan
+            rightScore = totalCharacters # 100% dari nilai benar
+        elif level == "intermediate":  # benar 100% - salah 100%
+            wordOutScore = round(0.2*totalCharacters) # 20% dari kesalahan
+            timeScore = round(0.3*totalCharacters) # 30% dari kesalahan
+            timeScore = timeScore * round(time/(totalCharacters/2)) # waktu di bulatkan
+            wrongScore = round(0.5*totalCharacters) # 50% dari kesalahan
+            rightScore = totalCharacters
+        elif level == "advanced": # benar 100% - salah 110%
+            wordOutScore = round(0.2*totalCharacters) # 20% dari kesalahan
+            timeScore = round(0.4*totalCharacters) # 40% dari kesalahan
+            timeScore = timeScore * round(time/(totalCharacters/3))
+            wrongScore = round(0.5*totalCharacters) # 50% dari kesalahan
+            rightScore = totalCharacters
+            
+        # Remove special characters
+        str1rm = ''
+        str2rm = ''
+        for data in str1.split(' '):
+            str1rm += ''.join(char for char in data if char.isalnum())
+            str1rm += ' '
+        for data in str2.split(' '): 
+            str2rm += ''.join(char for char in data if char.isalnum())
+            str2rm += ' '
 
-    # Compare String
-    readUntil = 3
-    str1rm = str1rm.split(' ')
-    str2rm = str2rm.split(' ')
-    loopingIndex = len(str1rm) if len(str1rm) > len(str2rm) else len(str2rm)
+        # Compare String
+        readUntil = 3
+        str1rm = str1rm.split(' ')
+        str2rm = str2rm.split(' ')
+        loopingIndex = len(str1rm) if len(str1rm) > len(str2rm) else len(str2rm)
 
-    for i in range(loopingIndex):
-        # print(i)
-        if i < len(str1rm) and i < len(str2rm):
-            if str1rm[i] != "" and str2rm[i] != "":
-                if str1rm[i] == str2rm[i]:
-                    finalString += str2rm[i]+" "
-                    rightAnswer += 1
-                else:
-                    for j in range(readUntil):
-                        if (j+i) < len(str1rm) and (j+i) < len(str2rm):
-                            if str1rm[i] == str2rm[i+j]:
-                                checkFinalString = finalString.split(" ")
-                                if checkFinalString[len(checkFinalString)-2] != str2rm[i]:
-                                    finalString += "<" + str2rm[i]+"> "
-                                    wordOut += 1
-                                finalString += str2rm[i+j]+" "
-                                rightAnswer += 1
-                                break
-                            else:
-                                if (j+1) == readUntil:
+        for i in range(loopingIndex):
+            # print(i)
+            if i < len(str1rm) and i < len(str2rm):
+                if str1rm[i] != "" and str2rm[i] != "":
+                    if str1rm[i] == str2rm[i]:
+                        finalString += str2rm[i]+" "
+                        rightAnswer += 1
+                    else:
+                        for j in range(readUntil):
+                            if (j+i) < len(str1rm) and (j+i) < len(str2rm):
+                                if str1rm[i] == str2rm[i+j]:
                                     checkFinalString = finalString.split(" ")
-                                    if checkFinalString[len(checkFinalString)-2] != "<"+str2rm[i]+">":
-                                        finalString += "<" + str2rm[i] + "> "
+                                    if checkFinalString[len(checkFinalString)-2] != str2rm[i]:
+                                        finalString += "<" + str2rm[i]+"> "
                                         wordOut += 1
-                                        break
+                                    finalString += str2rm[i+j]+" "
+                                    rightAnswer += 1
+                                    break
+                                else:
+                                    if (j+1) == readUntil:
+                                        checkFinalString = finalString.split(" ")
+                                        if checkFinalString[len(checkFinalString)-2] != "<"+str2rm[i]+">":
+                                            finalString += "<" + str2rm[i] + "> "
+                                            wordOut += 1
+                                            break
+                                        else:
+                                            continue
                                     else:
                                         continue
-                                else:
-                                    continue
-                        else:
-                            checkFinalString = finalString.split(" ")
-                            
-                            if checkFinalString[len(checkFinalString)-2] != "<"+str2rm[i]+">":
-                                finalString += "<" + str2rm[i] + "> "
-                                wordOut += 1
                             else:
-                                finalString += str2rm[i] + " "
-                                rightAnswer += 1
-                                break
-        else:
-            checkFinalString = finalString.split(" ")
-            print(checkFinalString[len(checkFinalString)-2])
-            print(str2rm[i-1])
-            if str2rm[i-1] != "" and checkFinalString[len(checkFinalString)-2] != "" and checkFinalString[len(checkFinalString)-2] != str2rm[i-1]:
-                finalString += "<" + str2rm[i-1] + "> "
-                wordOut += 1
-        
-                
-    # menghitung nilai sementara
-    wrongAnswer = (totalCharacters - rightAnswer)
-    wordOut = (wordOut - wrongAnswer)
+                                checkFinalString = finalString.split(" ")
+                                
+                                if checkFinalString[len(checkFinalString)-2] != "<"+str2rm[i]+">":
+                                    finalString += "<" + str2rm[i] + "> "
+                                    wordOut += 1
+                                else:
+                                    finalString += str2rm[i] + " "
+                                    rightAnswer += 1
+                                    break
+            else:
+                checkFinalString = finalString.split(" ")
+                print(checkFinalString[len(checkFinalString)-2])
+                print(str2rm[i-1])
+                if str2rm[i-1] != "" and checkFinalString[len(checkFinalString)-2] != "" and checkFinalString[len(checkFinalString)-2] != str2rm[i-1]:
+                    finalString += "<" + str2rm[i-1] + "> "
+                    wordOut += 1
+            
+                    
+        # menghitung nilai sementara
+        wrongAnswer = (totalCharacters - rightAnswer)
+        wordOut = (wordOut - wrongAnswer)
 
-    # menghitung nilai akhir
-    wrongScoreFinal = ((wrongAnswer/wrongScore)) if wrongAnswer > 0 else 0
-    rightScoreFinal = ((rightAnswer/rightScore)*100) if rightAnswer > 0 else 0
-    wordOutScoreFinal = ((wordOut/wordOutScore)) if wordOut > 0 else 0
-    totalScore = (((rightScoreFinal - timeScore) - wrongScoreFinal) - wordOutScoreFinal)
-    
-    return {
-        "totalScore": round(totalScore, 1),
-        "finalText": finalString,
-        "wrong": wrongAnswer,
-        "wrongScore": round(wrongScoreFinal, 1),
-        "outWord": wordOut,
-        "outWordScore": round(wordOutScoreFinal, 1),
-        "right": rightAnswer,
-        "rightScore": round(rightScoreFinal, 1)
-    }
+        # menghitung nilai akhir
+        wrongScoreFinal = ((wrongAnswer/wrongScore)) if wrongAnswer > 0 else 0
+        rightScoreFinal = ((rightAnswer/rightScore)*100) if rightAnswer > 0 else 0
+        wordOutScoreFinal = ((wordOut/wordOutScore)) if wordOut > 0 else 0
+        totalScore = (((rightScoreFinal - timeScore) - wrongScoreFinal) - wordOutScoreFinal)
+        
+        return {
+            "totalScore": round(totalScore, 1),
+            "finalText": finalString,
+            "wrong": wrongAnswer,
+            "wrongScore": round(wrongScoreFinal, 1),
+            "outWord": wordOut,
+            "outWordScore": round(wordOutScoreFinal, 1),
+            "right": rightAnswer,
+            "rightScore": round(rightScoreFinal, 1)
+        }
+    except Exception as e:
+        print(str(e))
+        return {
+            "error": str(e)
+        }
 
 def audio_duration(length):
     hours = length // 3600  # calculate in hours
@@ -327,18 +333,20 @@ def index():
                                         highScore = 0
                                         resScoreFinal = []
                                         for ianswer, answer in enumerate(lessonQuest):
+                                            print(ianswer)
                                             print(answer)
                                             resScore = count_score(answer, resSpeech['text'], seconds, level)
-                                            print(resScore)
-                                            if resScore['totalScore'] > highScore:
+                                            if len(resScore) < 8: 
+                                                continue
+                                            elif resScore['totalScore'] > highScore:
                                                 highScore = resScore['totalScore']
                                                 highScoreIndex = ianswer
                                                 resScoreFinal = resScore
-                                        print(highScore)
-                                        print(resScoreFinal)
+                                        # print(highScore)
+                                        # print(resScoreFinal)
                                         resScoreFinal['textPredict'] = resSpeech['text']
                                         resScoreFinal['textPredict'] = resSpeech['text']
-                                        resScoreFinal['textQuest'] = lessonQuest
+                                        resScoreFinal['textQuest'] = lessonQuest[highScoreIndex]
                                         resScoreFinal['view'] = results['view']
                                         resScoreFinal['download'] = results['download']
                                         results['data'] = resScoreFinal

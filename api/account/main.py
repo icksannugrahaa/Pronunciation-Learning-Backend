@@ -11,9 +11,6 @@ from datetime import datetime
 import datetime as date_time
 import pymongo
 import bcrypt
-import io
-import csv
-import json
 from .schema import registerAccountSchema, resetPasswordSchema, changePasswordSchema, updateSchema, updateEmailSchema
 import api.utils.data_utils as dataUtils
 from api.utils.mail_utils import Mail
@@ -70,92 +67,6 @@ def process_filter(request):
     for alldata in allData:
         outputs.append(alldata)
     return [output, dataUtils.get_paginated_list(outputs, offset, limit, page)]
-
-
-@account.route('/register', methods=['POST'])
-@cross_origin()
-def register():
-    results = {}
-    responses = 500
-    results['message'] = "Internal Server Error!"
-    results['status'] = 'error'
-    if request.method == 'POST':
-        validation_result = validateForm(request, 'register_account')
-        if validation_result.get('success', False) is True:
-            checkEmail = list(accountCollection.find({'email': request.form['email']}))
-            createdAt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            if(len(checkEmail) > 0):
-                checkStatus = list(accountCollection.find({'email': request.form['email'], 'status': False, 'code': checkEmail[0]['code']}))
-                if(len(checkStatus) > 0):
-                    code = dataUtils.code_generator()
-                    insertData = {
-                        'code': code,
-                        'createdAt': createdAt
-                    }
-                    host = request.host_url
-                    codes = str(code+"-"+createdAt).encode("utf-8")
-                    encryptCodes = bcrypt.hashpw(codes, bcrypt.gensalt())
-                    mail = Mail()
-                    mail.send(request.form['email'], code, encryptCodes.decode("utf-8"), host, 'registration')
-                    accountCollection.update_one(
-                        {'email': request.form['email'], 'status': False, 'code': checkEmail[0]['code']},
-                        {'$set': insertData}
-                    )
-                    results['message'] = "Account has been created, please confirm from your email!"
-                    results['status'] = 'success'
-                    responses = 201
-                else:
-                    results['message'] = "Email have been used!"
-                    results['status'] = 'error'
-                    responses = 200
-            else: 
-                try:
-                    psw = str(request.form['password']).encode("utf-8")
-                    code = dataUtils.code_generator()
-                    insertData = {
-                        'email': request.form['email'],
-                        'password': bcrypt.hashpw(psw, bcrypt.gensalt()),
-                        'achievement': [],
-                        'googleSignIn': False,
-                        'name': request.form['name'],
-                        'exp': 0,
-                        'level': 1,
-                        'avatar': '/api/file?show=guest.png&path=/images',
-                        'gender': None,
-                        'biodata': None,
-                        'phoneNumber': None,
-                        'status': False,
-                        'token': None,
-                        'code': code,
-                        'createdAt': createdAt
-                    }
-                    
-                    host = request.host_url
-                    codes = str(code+"-"+createdAt).encode("utf-8")
-                    encryptCodes = bcrypt.hashpw(codes, bcrypt.gensalt())
-                    mail = Mail()
-                    mail.send(request.form['email'], code, encryptCodes.decode("utf-8"), host, 'registration')
-                    
-                    accountCollection.insert_one(insertData)
-                    results['message'] = "Account has been created, please confirm from your email!"
-                    results['status'] = 'success'
-                    responses = 201
-                except Exception as e:
-                    print(e)
-                    results['message'] = "Internal Server Error!"
-                    results['status'] = 'error'
-                    responses = 500
-        else:
-            results['message'] = "Please check your input"
-            results['status'] = 'error'
-            results['errors'] = validation_result.get("error")
-            responses = 400
-    else:
-        results['message'] = "Method Not Alowed"
-        results['status'] = 'error'
-        responses = 405
-        
-    return results, responses
 
 @account.route('/verify', methods=['GET'])
 @cross_origin()

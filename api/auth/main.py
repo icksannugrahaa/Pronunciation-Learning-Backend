@@ -8,9 +8,15 @@ from flask_cors import cross_origin
 import bcrypt
 from api.utils.mail_utils import Mail
 import api.utils.data_utils as dataUtils
+from api.account.main import validateForm
+import pymongo
 
 tokenCollection = db.blocked_tokens
-accountDB = db.accounts
+accountCollection = db.accounts
+progressCollection = db.progress
+moduleCollection = db.modules
+levelCollection = db.levels
+
 
 
 @auth.route('/me', methods=['POST'])
@@ -26,15 +32,16 @@ def me():
             currentToken = token.split(' ')
 
             # Access DB
-            cursor = list(accountDB.find({"email": email, "token": currentToken[1]}, {'name': 1, '_id': 0, 'email': 1, 'achievement': 1, 'status': 1, 'googleSignIn': 1, 'biodata': 1, 'phoneNumber': 1, 'gender': 1,
-                                                            'exp': 1, 'level': 1, 'avatar': 1}))
+            cursor = list(accountCollection.find({"email": email, "token": currentToken[1]}))
 
             if len(cursor) == 0:
                 results['message'] = "Your session is expired!"
                 results['status'] = "error"
-                response = 400
+                response = 401
             else:
                 for data in cursor:
+                    data.pop('password', None)
+                    data.pop('_id', None)
                     results['message'] = "Data Found!"
                     results['status'] = "success"
                     results['data'] = data
@@ -42,7 +49,7 @@ def me():
         else:
             results['message'] = "Your session is expired!"
             results['status'] = "error"
-            response = 403
+            response = 401
     else:
         results['message'] = "Method Not Alowed"
         results['status'] = "error"
@@ -71,7 +78,7 @@ def send_code():
             'updatedAt': updatedAt
         }
         
-        accountDB.update_one(
+        accountCollection.update_one(
             {'email': get_jwt_identity()},
             {'$set': updateData}
         )
@@ -97,8 +104,7 @@ def login():
             email = request.form['email']
             password = str(request.form['password']).encode("utf-8")
             # Access DB
-            finData = list(accountDB.find({"email": email}, {'name': 1, '_id': 1, 'email': 1, 'achievement': 1, 'status': 1, 'googleSignIn': 1, 'biodata': 1, 'phoneNumber': 1, 'gender': 1,
-                                                             'exp': 1, 'level': 1, 'avatar': 1, 'password': 1}))
+            finData = list(accountCollection.find({"email": email}))
 
             if len(finData) == 0:
                 results['message'] = "Email not found!"
@@ -116,7 +122,7 @@ def login():
                             access_token = create_access_token(
                                 identity=finData[0]['email'], expires_delta=datetime.timedelta(hours=24))
 
-                            accountDB.update_one(
+                            accountCollection.update_one(
                                 {
                                     "_id": ObjectId(finData[0]["_id"])
                                 },
@@ -166,7 +172,7 @@ def expire():
             currentToken = token.split(' ')
 
             # Access DB
-            cursor = list(accountDB.find(
+            cursor = list(accountCollection.find(
                 {"token": currentToken[1]}))
 
             if len(cursor) == 0:
@@ -179,7 +185,7 @@ def expire():
                         results['status'] = "success"
                         results['message'] = "Your session is expired!"
                         response = 200
-                        accountDB.update_one(
+                        accountCollection.update_one(
                             {
                                 "_id": ObjectId(data["_id"])
                             },
@@ -204,6 +210,116 @@ def expire():
 
     return results, response
 
+@auth.route('/register', methods=['POST'])
+@cross_origin()
+def register():
+    results = {}
+    responses = 500
+    results['message'] = "Internal Server Error!"
+    results['status'] = 'error'
+    if request.method == 'POST':
+        validation_result = validateForm(request, 'register_account')
+        if validation_result.get('success', False) is True:
+            checkEmail = list(accountCollection.find({'email': request.form['email']}))
+            createdAt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            if(len(checkEmail) > 0):
+                checkStatus = list(accountCollection.find({'email': request.form['email'], 'status': False, 'code': checkEmail[0]['code']}))
+                if(len(checkStatus) > 0):
+                    code = dataUtils.code_generator()
+                    insertData = {
+                        'code': code,
+                        'createdAt': createdAt
+                    }
+                    host = request.host_url
+                    codes = str(code+"-"+createdAt).encode("utf-8")
+                    encryptCodes = bcrypt.hashpw(codes, bcrypt.gensalt())
+                    mail = Mail()
+                    mail.send(request.form['email'], code, encryptCodes.decode("utf-8"), host, 'registration')
+                    accountCollection.update_one(
+                        {'email': request.form['email'], 'status': False, 'code': checkEmail[0]['code']},
+                        {'$set': insertData}
+                    )
+                    results['message'] = "Account has been created, please confirm from your email!"
+                    results['status'] = 'success'
+                    responses = 201
+                else:
+                    results['message'] = "Email have been used!"
+                    results['status'] = 'error'
+                    responses = 200
+            else: 
+                try:
+                    levelData = list(levelCollection.find().sort('exp', pymongo.ASCENDING).limit(1))
+                    psw = str(request.form['password']).encode("utf-8")
+                    code = dataUtils.code_generator()
+                    insertData = {
+                        'email': request.form['email'],
+                        'password': bcrypt.hashpw(psw, bcrypt.gensalt()),
+                        'achievement': [],
+                        'googleSignIn': False,
+                        'name': request.form['name'],
+                        'exp': 0,
+                        'expNext': levelData[0]['exp'],
+                        'level': 1,
+                        'levelName': levelData[0]['name'],
+                        'avatar': '/api/file/show?filename=guest.png&path=/images',
+                        'gender': None,
+                        'biodata': None,
+                        'phoneNumber': None,
+                        'status': False,
+                        'token': None,
+                        'code': code,
+                        'createdAt': createdAt
+                    }
+                    
+                    host = request.host_url
+                    codes = str(code+"-"+createdAt).encode("utf-8")
+                    encryptCodes = bcrypt.hashpw(codes, bcrypt.gensalt())
+                    mail = Mail()
+                    mail.send(request.form['email'], code, encryptCodes.decode("utf-8"), host, 'registration')
+                    
+                    listModule = []
+                    moduleData = list(moduleCollection.find({'level': 1, 'status': True}))
+                    if len(moduleData) > 0:
+                        for module in moduleData:
+                           listModule.append({
+                               'order': module['order'],
+                               'currentProgress': f'{module["order"]}-{module["lessons"][0]["order"]}-t-1',
+                               'status': "new",
+                               'progress': [
+                                   {
+                                       'lesson': f'{module["order"]}-{module["lessons"][0]["order"]}',
+                                       'status': "new",
+                                       'progress': "t-1",
+                                       'scores': {}
+                                   }
+                               ]
+                           })
+                    progressData = {
+                        "email": request.form['email'],
+                        "lastLearn": {},
+                        "allProgress": listModule
+                    } 
+                    accountCollection.insert_one(insertData)
+                    progressCollection.insert_one(progressData)
+                    results['message'] = "Account has been created, please confirm from your email!"
+                    results['status'] = 'success'
+                    responses = 201
+                except Exception as e:
+                    print(e)
+                    results['message'] = "Internal Server Error!"
+                    results['status'] = 'error'
+                    responses = 500
+        else:
+            results['message'] = "Please check your input"
+            results['status'] = 'error'
+            results['errors'] = validation_result.get("error")
+            responses = 400
+    else:
+        results['message'] = "Method Not Alowed"
+        results['status'] = 'error'
+        responses = 405
+        
+    return results, responses
 
 @auth.route('/logout', methods=['POST'])
 @jwt_required()
@@ -219,7 +335,7 @@ def logout():
             currentToken = token.split(' ')
             
             # Access DB
-            cursor = list(accountDB.find(
+            cursor = list(accountCollection.find(
                 {"token": currentToken[1]}))
 
             if len(cursor) == 0:
@@ -239,7 +355,7 @@ def logout():
                             'jti': jti,
                             'created_at': now
                         })
-                        accountDB.update_one(
+                        accountCollection.update_one(
                             {
                                 "_id": ObjectId(data["_id"])
                             },
