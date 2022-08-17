@@ -257,6 +257,7 @@ def tts():
         response = 405
 
     return results, response
+
 @predict.route('/get', methods=['POST'])
 @jwt_required()
 @cross_origin()
@@ -276,8 +277,8 @@ def index():
                     file = request.files['file']
                     filename = file.filename
                     filenameSplit = filename.split('-')
-                    username = ' '.join(filenameSplit[0].split('_'))
-                    if username == account[0]['name']:
+                    user_id = filenameSplit[0]
+                    if user_id == str(account[0]['_id']):
                         lessonOrder = int(filenameSplit[4].split(".")[0])
                         lessonType = 'theory'
                         lessonTypes = 'question'
@@ -301,22 +302,24 @@ def index():
                             print(results)
                             if results['status'] == True:
                                 filePath = request.form['path'] if 'path' in request.form else "others"
-                                filenameJoin = '_'.join(filenameSplit[0].split(' '))
-                                newFileName = filenameJoin+"-"+filenameSplit[1]+"-"+filenameSplit[2]+"-"+filenameSplit[3]+"-"+filenameSplit[4]
-                                print(newFileName)
-                                resSpeech = recognition_from_file(newFileName, filePath)
+                                # filenameJoin = '_'.join(filenameSplit[0].split(' '))
+                                # newFileName = filenameJoin+"-"+filenameSplit[1]+"-"+filenameSplit[2]+"-"+filenameSplit[3]+"-"+filenameSplit[4]
+                                # print(newFileName)
+                                resSpeech = recognition_from_file(filename, filePath)
                                 print(resSpeech)
                                 if resSpeech['status'] == "success":
-                                    audio = WAVE(os.path.join(app.config["UPLOAD_FOLDER"]+"/"+filePath+"/original", newFileName))
+                                    audio = WAVE(os.path.join(app.config["UPLOAD_FOLDER"]+"/"+filePath+"/original", filename))
                                     audio_info = audio.info
                                     length = int(audio_info.length)
                                     hours, mins, seconds = audio_duration(length)
                                     level = "beginner"
-                                    if lessonData[0]['level'] >= 1 and lessonData[0]['level'] <= 5:
+                                    if lessonData[0]['level'] >= 1 and lessonData[0]['level'] <= 2:
                                         level = "beginner"
-                                    elif lessonData[0]['level'] >= 6 and lessonData[0]['level'] <= 10:
+                                    elif lessonData[0]['level'] >= 3 and lessonData[0]['level'] <= 5:
                                         level = "intermediate"
-                                    
+                                    elif lessonData[0]['level'] >= 6 and lessonData[0]['level'] <= 10:
+                                        level = "advance"
+                                        
                                     print(lessonQuest)
                                     print(filenameSplit[3])
                                     if filenameSplit[3] == "t":

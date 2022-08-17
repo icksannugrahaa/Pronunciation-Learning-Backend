@@ -49,6 +49,7 @@ try:
     from .account import account as account_blueprint
     from .progress import progress as progress_blueprint
     from .predict import predict as predict_blueprint
+    from .achievement import achievement as achievement_blueprint
     
 
     app.register_blueprint(module_blueprint, url_prefix='/api/modules')
@@ -57,6 +58,7 @@ try:
     app.register_blueprint(account_blueprint, url_prefix='/api/account')
     app.register_blueprint(progress_blueprint, url_prefix='/api/progress')
     app.register_blueprint(predict_blueprint, url_prefix='/api/predict')
+    app.register_blueprint(achievement_blueprint, url_prefix='/api/achievement')
     
     @jwt.token_in_blocklist_loader
     def check_if_token_revoked(jwt_header, jwt_payload):

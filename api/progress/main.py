@@ -8,6 +8,7 @@ import re
 import api.utils.data_utils as dataUtils
 from bson.objectid import ObjectId
 import datetime
+import api.utils.achievement_utils as achievementUtils 
 
 # initial db
 progressDB = db.progress
@@ -352,6 +353,32 @@ def store():
                                                         }
                                                     ]
                                                 )
+                                                
+                                                results['levelUp'] = False
+                                                results['newAchievement'] = False
+                                                
+                                                # check new achievement theory
+                                                newAchivementTheory = achievementUtils.checkAchievementTheory(currentAccount)
+                                                if newAchivementTheory['status'] == 'success':
+                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementTheory['levelUp'] == True else False
+                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementTheory['status'] == 'success' else False
+                                                    results['newAchievementMsg'] = newAchivementTheory['message']
+                                                else:
+                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementTheory['levelUp'] == True else False
+                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementTheory['status'] == 'success' else False
+                                                    results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementTheory['message']
+                                                    
+                                                # check new achievement quizz
+                                                newAchivementQuizz = achievementUtils.checkAchievementQuizz(currentAccount)
+                                                if newAchivementQuizz['status'] == 'success':
+                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementQuizz['levelUp'] == True else False
+                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementQuizz['status'] == 'success' else False
+                                                    results['newAchievementMsg'] = newAchivementQuizz['message']
+                                                else:
+                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementQuizz['levelUp'] == True else False
+                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementQuizz['status'] == 'success' else False
+                                                    results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementTheory['message']
+                                                    
                                                 if nextProgressData and progressSplit[0] != "s":
                                                     print('masuk sini 7')
                                                     progressDB.update_one(
@@ -399,7 +426,7 @@ def store():
                                                         else:
                                                             newLevel = int(account[0]['level'])
                                                             newExpNext = int(account[0]['expNext'])
-                                                            newLevelName = account[0]['name']
+                                                            newLevelName = account[0]['levelName']
                                                             
                                                     accountCollection.update_one({
                                                         "email": currentAccount
@@ -412,22 +439,6 @@ def store():
                                                             "levelName": newLevelName
                                                         }       
                                                     })
-                                                            
-                                                    # if currentExp >= levelFind[0]['exp']:
-                                                    #     accountCollection.update_one({
-                                                    #         "email": currentAccount
-                                                    #     },
-                                                    #     {
-                                                    #         "$set": {
-                                                    #             "exp": currentExp,
-                                                    #             "level": int(levelFind[0]['level']),
-                                                    #             "expNext": int(levelFind[0]['exp']) if len(levelFind) > 1 else int(levelFind[0]['exp']),
-                                                    #             "levelName": levelFind[0]['name'] if len(levelFind) > 1 else levelFind[0]['name']
-                                                    #         }       
-                                                    #     })
-                                                    # # if level up
-                                                    # if str(account[0]['level']) != str(int(levelFind[0]['level'])) and int(levelFind[0]['level']) > account[0]['level']:
-                                                        # results['levelUp'] = True
                                                         
                                                     # save to scoreboard
                                                     checkScoreBoard = list(scoreboardCollection.find({'email': currentAccount, 'lesson': request.form['lesson']}))
@@ -496,7 +507,7 @@ def store():
                                                         else:
                                                             newLevel = int(account[0]['level'])
                                                             newExpNext = int(account[0]['expNext'])
-                                                            newLevelName = account[0]['name']
+                                                            newLevelName = account[0]['levelName']
                                                             
                                                     accountCollection.update_one({
                                                         "email": currentAccount

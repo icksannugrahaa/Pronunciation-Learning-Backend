@@ -26,7 +26,9 @@ updateSchema = Kanpai.Object({
     "gender": Kanpai.String(),
     "biodata": Kanpai.String(),
     "phoneNumber": Kanpai.String(),
-    "status": Kanpai.String()
+    "status": Kanpai.String(),
+    "currentPassword": Kanpai.String(),
+    "email": Kanpai.String().trim().match(r'[^@]+@[^@]+\.[^@]+', error="Please enter valid email")
 })
 
 registerAccountSchema = Kanpai.Object({

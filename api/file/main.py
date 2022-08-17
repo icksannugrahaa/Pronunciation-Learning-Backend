@@ -59,7 +59,7 @@ def uploadFile(request):
                         if filetype == 'audio' :
                             results['view'] = app.config['API_BASE_URL']+"/api/file/show?filename="+filename+"&path=/"+filePath
                             results['download'] = app.config['API_BASE_URL']+"/api/file/download?filename="+filename+"&path=/"+filePath
-                        elif filetype == 'image':
+                        elif filetype == 'images':
                            
                             #resize image
                             openImage = Image.open(os.path.join(originalFileDir, filename))

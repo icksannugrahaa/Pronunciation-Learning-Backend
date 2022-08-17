@@ -18,6 +18,7 @@ from urllib.parse import urlparse
 
 accountCollection = db.accounts
 progressCollection = db.progress
+scoreboardCollection = db.scoreboards
 apiModule = 'account'
 
 def validateForm(request, event):
@@ -76,45 +77,72 @@ def verify():
     results['message'] = "Internal Server Error!"
     results['status'] = 'error'
     if request.method == 'GET':
-        if 'code' in request.args and request.args.get('code') != '' and request.args.get('code') != 'null' and 'key' in request.args and request.args.get('key') != '' and request.args.get('key') != 'null':
-            findCode = list(accountCollection.find({'code': request.args['code']}))
+        if 'code' in request.args and request.args.get('code') != '' and request.args.get('code') != 'null':
+            findCode = list(accountCollection.find({'code': request.args['code']}).limit(1))
             if(len(findCode) <= 0):
-                results['message'] = "Verification failed!, please try to register again!"
+                results['message'] = "Verification failed!, Wrong code!"
                 results['status'] = 'error'
                 responses = 200
             else:
-                code = str(findCode[0]['code']+"-"+findCode[0]['createdAt']).encode("utf-8")
-                key = str(request.args.get('key')).encode("utf-8")
-                if bcrypt.checkpw(code, key):
-                    try:
-                        updatedAt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                if findCode[0]['status'] == True:
+                    updatedAt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            
+                    mail = Mail()
+                    mail.send(findCode[0]['email'], '', '', '', 'verify')
                     
-                        mail = Mail()
-                        mail.send(findCode[0]['email'], '', '', '', 'verify')
-                        
-                        updateData = {
-                            'status': True,
-                            'code': None,
-                            'updatedAt': updatedAt
-                        }
-                        
-                        accountCollection.update_one(
-                            {'email': findCode[0]['email']},
-                            {'$set': updateData}
-                        )
+                    updateData = {
+                        'status': True,
+                        'code': None,
+                        'updatedAt': updatedAt
+                    }
+                    
+                    accountCollection.update_one(
+                        {'email': findCode[0]['email']},
+                        {'$set': updateData}
+                    )
 
-                        results['message'] = "Account has been verified!"
-                        results['status'] = 'success'
-                        responses = 200
-                    except Exception as e:
-                        print(e)
-                        results['message'] = "Internal Server Error!"
-                        results['status'] = 'error'
-                        responses = 500
+                    results['message'] = "Account has been verified!"
+                    results['status'] = 'success'
+                    responses = 200
                 else:
-                    results['message'] = "Verification failed!, please try to register again!"
-                    results['status'] = 'error'
-                    responses = 400
+                    if 'key' in request.args and request.args.get('key') != '' and request.args.get('key') != 'null':
+                        code = str(findCode[0]['code']+"-"+findCode[0]['createdAt']).encode("utf-8")
+                        key = str(request.args.get('key')).encode("utf-8")
+                        if bcrypt.checkpw(code, key):
+                            try:
+                                updatedAt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            
+                                mail = Mail()
+                                mail.send(findCode[0]['email'], '', '', '', 'verify')
+                                
+                                updateData = {
+                                    'status': True,
+                                    'code': None,
+                                    'updatedAt': updatedAt
+                                }
+                                
+                                accountCollection.update_one(
+                                    {'email': findCode[0]['email']},
+                                    {'$set': updateData}
+                                )
+
+                                results['message'] = "Account has been verified!"
+                                results['status'] = 'success'
+                                responses = 200
+                            except Exception as e:
+                                print(e)
+                                results['message'] = "Internal Server Error!"
+                                results['status'] = 'error'
+                                responses = 500
+                        else:
+                            results['message'] = "Verification failed!, your verification is not valid!"
+                            results['status'] = 'error'
+                            responses = 400    
+                    else:       
+                        results['message'] = "Verification failed!, please try to register again!"
+                        results['status'] = 'error'
+                        responses = 400   
+                
         else:
             results['message'] = "Verification failed!, please try to register again!"
             results['status'] = 'error'
@@ -228,22 +256,64 @@ def update_account():
         account = list(accountCollection.find({'email': currentAccount}))
         validation_result = validateForm(request, 'update_account')
         if validation_result.get('success', False) is True:
-            updateData = {}
-            updateData['updatedAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            for key in request.form.keys():
-                for value in request.form.getlist(key):
-                    if key == 'status' or key == 'googleSignIn':
-                        updateData[key] = True if value == "true" else False
+            if 'email' in request.form and request.form['email'] != account[0]['email']:
+                if len(account) > 0:
+                    password = str(request.form['currentPassword']).encode("utf-8")
+                    if bcrypt.checkpw(password, account[0]['password']):
+                        updateData = {}
+                        updateData['updatedAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        for key in request.form.keys():
+                            for value in request.form.getlist(key):
+                                updateData[key] = value
+                        progressCollection.update_one(
+                            {"email": currentAccount},
+                            {"$set": {'email': request.form['email']}}
+                        )
+                        scoreboardCollection.update_one(
+                            {"email": currentAccount},
+                            {"$set": {'email': request.form['email'], 'name': request.form['name']}}
+                        )
+                        access_token = create_access_token(identity=request.form['email'], expires_delta=date_time.timedelta(days=1))
+                        updateData['token'] = access_token
+                        accountCollection.update_one(
+                            {"email": currentAccount},
+                            {"$set": updateData}
+                        ) 
+                        accountNew = list(accountCollection.find({'email': request.form['email']}, {'password': 0}))[0]
+                        accountNew['_id'] = str(accountNew["_id"])
+                        results['data'] = accountNew
+                        results['message'] = "Account has been updated!"
+                        results['status'] = 'success'
+                        responses = 200
                     else:
+                        results['message'] = "Your current password is wrong!"
+                        results['status'] = 'error'
+                        responses = 200
+                else:
+                    results['message'] = "Account Not Found!"
+                    results['status'] = 'error'
+                    responses = 200
+            else:
+                updateData = {}
+                updateData['updatedAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                for key in request.form.keys():
+                    for value in request.form.getlist(key):
                         updateData[key] = value
-                
-            accountCollection.update_one(
-                {"email": currentAccount},
-                {"$set": updateData}
-            )
-            results['message'] = "Account has been updated!"
-            results['status'] = 'success'
-            responses = 200
+                    
+                accountCollection.update_one(
+                    {"email": currentAccount},
+                    {"$set": updateData}
+                )
+                scoreboardCollection.update_one(
+                    {"email": currentAccount},
+                    {"$set": {'name': request.form['name']}}
+                )
+                accountNew = list(accountCollection.find({'email': request.form['email']}, {'password': 0}))[0]
+                accountNew['_id'] = str(accountNew['_id'])
+                results['data'] = accountNew
+                results['message'] = "Account has been updated!"
+                results['status'] = 'success'
+                responses = 200
         else:
             results['message'] = "Please check your input"
             results['status'] = 'error'
@@ -274,7 +344,7 @@ def update_email():
             if bcrypt.checkpw(currentPassword,account[0]['password']):
                 if request.form['code'] == account[0]['code']:
                     updatedAt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    access_token = create_access_token(identity=request.form['email'], expires_delta=date_time.timedelta(minutes=30))
+                    access_token = create_access_token(identity=request.form['email'], expires_delta=date_time.timedelta(days=1))
                     updateData = {
                         'email': request.form['email'],
                         'updatedAt': updatedAt,
@@ -295,9 +365,9 @@ def update_email():
                     )
                     accountNew = list(accountCollection.find({'email': request.form['email']}))[0]
                     accountNew['_id'] = str(accountNew['_id'])
-                    results['message'] = "Email has been updated!"
                     results['data'] = accountNew
                     results['token'] = access_token
+                    results['message'] = "Email has been updated!"
                     results['status'] = 'success'
                     responses = 200
                 else:

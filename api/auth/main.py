@@ -17,8 +17,6 @@ progressCollection = db.progress
 moduleCollection = db.modules
 levelCollection = db.levels
 
-
-
 @auth.route('/me', methods=['POST'])
 @jwt_required()
 @cross_origin()
@@ -32,7 +30,7 @@ def me():
             currentToken = token.split(' ')
 
             # Access DB
-            cursor = list(accountCollection.find({"email": email, "token": currentToken[1]}))
+            cursor = list(accountCollection.find({"email": email, "token": currentToken[1]}, {'password': 0}))
 
             if len(cursor) == 0:
                 results['message'] = "Your session is expired!"
@@ -40,8 +38,7 @@ def me():
                 response = 401
             else:
                 for data in cursor:
-                    data.pop('password', None)
-                    data.pop('_id', None)
+                    data['_id'] = str(data["_id"])
                     results['message'] = "Data Found!"
                     results['status'] = "success"
                     results['data'] = data
@@ -67,7 +64,7 @@ def send_code():
     results['status'] = 'error'
     if request.method == 'POST':
         updatedAt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        currentAccount = request.form['email'] if 'email' in request.form and request.form['email'] != '' and request.form['email'] != 'null' else get_jwt_identity()
+        currentAccount = request.form['email'] if 'email' in request.form and request.form['email'] != '' and request.form['email'] != 'null' and request.form['email'] != None else get_jwt_identity()
         code = dataUtils.code_generator()
         
         mail = Mail()
@@ -133,7 +130,6 @@ def login():
                                 }
                             )
                             finData[0].pop('password', None)
-                            finData[0].pop('_id', None)
                             results['message'] = "Login Success!"
                             results['status'] = "success"
                             results['token'] = access_token

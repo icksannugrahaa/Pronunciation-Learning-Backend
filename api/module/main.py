@@ -6,7 +6,7 @@ from flask_cors import cross_origin
 import re
 import api.utils.data_utils as dataUtils
 from bson.objectid import ObjectId
-from .schema import storeReview, updateReview
+from .schema import storeReview
 from datetime import datetime
 
 # initial db
@@ -21,8 +21,6 @@ def validateForm(request, event):
         reqData[data] = reqForm[data][0]
     if event == 'store_review':
         validation_result = storeReview.validate(reqData)
-    elif event == 'update_review':
-        validation_result = updateReview.validate(reqData)
     
     return validation_result
 
@@ -172,21 +170,38 @@ def storeFeedback():
                 findModule = list(moduleCollection.find({'order': int(moduleOrder[0])}).limit(1))
                 print(len(findModule))
                 if len(findModule) > 0:
+                    findComment = list(moduleCollection.find({'order': int(moduleOrder[0]), 'comments.email': account['email']}).limit(1))
                     reviewData = {
                         "name": account['name'],
+                        "email": account['email'],
                         "comment": request.form['comment'],
-                        "rating": float(request.form['rating']),
                         "createdAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        "rating": float(request.form['rating']),
                         "avatar": account['avatar'],
                     }
-                    print(reviewData)
-                    moduleCollection.update_one({
-                        'order': int(moduleOrder[0])
-                    }, {
-                        "$push": {
-                            'comments': reviewData
-                        }
-                    })
+                    if len(findComment) > 0:
+                        moduleCollection.update_one({
+                            'order': int(moduleOrder[0])
+                        }, {
+                            "$set": {
+                                'comments.$[comments]': reviewData
+                            }
+                        },
+                        array_filters=[
+                            {
+                                "comments.email": {
+                                    "$eq": account['email']
+                                }
+                            }
+                        ])
+                    else:
+                        moduleCollection.update_one({
+                            'order': int(moduleOrder[0])
+                        }, {
+                            "$push": {
+                                'comments': reviewData
+                            }
+                        })
                 results['message'] = "Review Saved!"
                 results['status'] = "success"
                 response = 201

@@ -1,0 +1,245 @@
+[
+    {
+        "name": "Theory Achievement",
+        "image": "/api/file/show?filename=guest.png&path=/images",
+        "level": [
+            {
+                "name": "Level 1 - Theory Achievement",
+                "description": "Completed 1 of Theory",
+                "level": 1,
+                "exp": 100,
+                "requirements": {
+                    "theory": 1
+                }
+            },
+            {
+                "name": "Level 2 - Theory Achievement",
+                "description": "Completed 10 of Theory",
+                "level": 2,
+                "exp": 200,
+                "requirements": {
+                    "theory": 3
+                }
+            },
+            {
+                "name": "Level 3 - Theory Achievement",
+                "description": "Completed 25 of Theory",
+                "level": 3,
+                "exp": 300,
+                "requirements": {
+                    "theory": 5
+                }
+            },
+            {
+                "name": "Level 4 - Theory Achievement",
+                "description": "Completed 50 of Theory",
+                "level": 4,
+                "exp": 400,
+                "requirements": {
+                    "theory": 7
+                }
+            },
+            {
+                "name": "Level 5 - Theory Achievement",
+                "description": "Completed 100 of Theory",
+                "level": 5,
+                "exp": 500,
+                "requirements": {
+                    "theory": 10
+                }
+            }
+        ]
+    },
+    {
+        "name": "Quizz Achievement",
+        "image": "/api/file/show?filename=guest.png&path=/images",
+        "level": [
+            {
+                "name": "Level 1 - Quizz Achievement",
+                "description": "Completed 1 of Quizz",
+                "level": 1,
+                "exp": 100,
+                "requirements": {
+                    "quizz": 1
+                }
+            },
+            {
+                "name": "Level 2 - Quizz Achievement",
+                "description": "Completed 10 of Quizz",
+                "level": 2,
+                "exp": 200,
+                "requirements": {
+                    "quizz": 3
+                }
+            },
+            {
+                "name": "Level 3 - Quizz Achievement",
+                "description": "Completed 25 of Quizz",
+                "level": 3,
+                "exp": 300,
+                "requirements": {
+                    "quizz": 5
+                }
+            },
+            {
+                "name": "Level 4 - Quizz Achievement",
+                "description": "Completed 50 of Quizz",
+                "level": 4,
+                "exp": 400,
+                "requirements": {
+                    "quizz": 7
+                }
+            },
+            {
+                "name": "Level 5 - Quizz Achievement",
+                "description": "Completed 100 of Quizz",
+                "level": 5,
+                "exp": 500,
+                "requirements": {
+                    "quizz": 10
+                }
+            }
+        ]
+    },
+    {
+        "name": "Level Achievement",
+        "image": "/api/file/show?filename=guest.png&path=/images",
+        "level": [
+            {
+                "name": "Level 1 - Level Achievement",
+                "description": "Reach Beginner Level",
+                "level": 1,
+                "exp": 100,
+                "requirements": {
+                    "level": 1,
+                    "exp": 1,
+                    "levelName": "Beginner"
+                }
+            },
+            {
+                "name": "Level 2 - Level Achievement",
+                "description": "Reach Intermediate Level",
+                "level": 2,
+                "exp": 200,
+                "requirements": {
+                    "level": 4,
+                    "exp": 3000,
+                    "levelName": "Intermediate"
+                }
+            },
+            {
+                "name": "Level 3 - Level Achievement",
+                "description": "Reach Advance Level",
+                "level": 3,
+                "exp": 300,
+                "requirements": {
+                    "level": 6,
+                    "exp": 6000,
+                    "levelName": "Advance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Lesson Achievement",
+        "image": "/api/file/show?filename=guest.png&path=/images",
+        "level": [
+            {
+                "name": "Level 1 - Lesson Achievement",
+                "description": "Completed 1 of Lesson",
+                "level": 1,
+                "exp": 500,
+                "requirements": {
+                    "lesson": 1
+                }
+            },
+            {
+                "name": "Level 2 - Lesson Achievement",
+                "description": "Completed 5 of Lesson",
+                "level": 2,
+                "exp": 500,
+                "requirements": {
+                    "lesson": 5
+                }
+            },
+            {
+                "name": "Level 3 - Lesson Achievement",
+                "description": "Completed 15 of Lesson",
+                "level": 3,
+                "exp": 500,
+                "requirements": {
+                    "lesson": 15
+                }
+            },
+            {
+                "name": "Level 4 - Lesson Achievement",
+                "description": "Completed 30 of Lesson",
+                "level": 4,
+                "exp": 500,
+                "requirements": {
+                    "lesson": 30
+                }
+            },
+            {
+                "name": "Level 5 - Lesson Achievement",
+                "description": "Completed 50 of Lesson",
+                "level": 5,
+                "exp": 500,
+                "requirements": {
+                    "lesson": 50
+                }
+            }
+        ]
+    },
+    {
+        "name": "Module Achievement",
+        "image": "/api/file/show?filename=guest.png&path=/images",
+        "level": [
+            {
+                "name": "Level 1 - Module Achievement",
+                "description": "Completed 1 of Module",
+                "level": 1,
+                "exp": 1000,
+                "requirements": {
+                    "module": 1
+                }
+            },
+            {
+                "name": "Level 2 - Module Achievement",
+                "description": "Completed 3 of Module",
+                "level": 2,
+                "exp": 1000,
+                "requirements": {
+                    "module": 3
+                }
+            },
+            {
+                "name": "Level 3 - Module Achievement",
+                "description": "Completed 8 of Module",
+                "level": 3,
+                "exp": 1000,
+                "requirements": {
+                    "module": 8
+                }
+            },
+            {
+                "name": "Level 4 - Module Achievement",
+                "description": "Completed 14 of Module",
+                "level": 4,
+                "exp": 1000,
+                "requirements": {
+                    "module": 14
+                }
+            },
+            {
+                "name": "Level 5 - Module Achievement",
+                "description": "Completed 20 of Module",
+                "level": 5,
+                "exp": 1000,
+                "requirements": {
+                    "module": 20
+                }
+            }
+        ]
+    }
+]
