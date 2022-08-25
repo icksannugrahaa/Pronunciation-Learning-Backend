@@ -187,6 +187,136 @@ def findNextProgress(request):
     return {'progressData': nextProgressData, 'progress': nextProgress}
 
 
+def checkNextProgress(moduleOrder, lessonOrder, progress):
+    query = {}
+    query['order'] = moduleOrder
+    query['lessons.order'] = lessonOrder
+    print(query)
+    nextData = {}
+    progressSplit = progress.split('-')
+    checkNextModule = list(moduleDB.find(query).limit(1))
+    # print(len(checkNextModule))
+    if len(checkNextModule) > 0:
+        checkNextModuleData = checkNextModule[0] 
+        lesson = [p for p in checkNextModuleData['lessons'] if p['order'] == lessonOrder]
+        if len(lesson) > 0:
+            currentLesson = lesson[0]
+            typeLesson = "theory" if progressSplit[0] == "t" else "quiz" if progressSplit[0] == "q" else "summary"
+            print(typeLesson)
+            if typeLesson == "summary":
+                if "summary" in currentLesson and currentLesson['summary']['title'] != "":
+                    nextData = {
+                        'lesson': str(moduleOrder)+"-"+str(lessonOrder),
+                        'status': "new",
+                        'progress': progress,
+                        'scores': None
+                    }
+            else:  
+                if len(currentLesson[typeLesson]) > 0:
+                    for lessonData in currentLesson[typeLesson]:
+                        lessonProgress = progressSplit[0]+"-"+str(lessonData['order'])
+                        print(lessonProgress+"=="+progress)
+                        if lessonProgress == progress:
+                            nextData = {
+                                'lesson': str(moduleOrder)+"-"+str(lessonOrder),
+                                'status': "new",
+                                'progress': progress,
+                                'scores': None
+                            }
+                            break
+    print(nextData)
+            
+    return nextData
+
+def findNext(request):
+    lessonSplit = request.form['lesson'].split('-')
+    progressSplit = request.form['progress'].split('-')
+    
+    # init next progress
+    nextProgressData = {}
+    tempNextProgressData = []
+    nextProgress = {}
+    nextProgressIsAvailable = True
+    
+    while(nextProgressIsAvailable):
+        if progressSplit[0] == 't':
+            moduleID = int(lessonSplit[0])
+            lessonID = int(lessonSplit[1])
+            nextProgressCode = progressSplit[0]+"-"+str(int(progressSplit[1])+1)
+            nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+            if nextProgress:
+                nextProgressIsAvailable = False
+            else:
+                nextProgressCode = "q-1"
+                nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+                if nextProgress:
+                    nextProgressIsAvailable = False
+                else:
+                    nextProgressCode = "s-1"
+                    nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+                    if nextProgress:
+                        nextProgressIsAvailable = False
+                    else:
+                        nextProgressIsAvailable = False
+        elif progressSplit[0] == 'q':
+            moduleID = int(lessonSplit[0])
+            lessonID = int(lessonSplit[1])
+            nextProgressCode = progressSplit[0]+"-"+str(int(progressSplit[1])+1)
+            nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+            if nextProgress:
+                nextProgressIsAvailable = False
+            else:
+                nextProgressCode = "s-1"
+                nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+                if nextProgress:
+                    nextProgressIsAvailable = False
+                else:
+                    lessonID = int(lessonSplit[1])+1
+                    nextProgressCode = "t-1"
+                    nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+                    if nextProgress:
+                        nextProgressIsAvailable = False
+                    else:
+                        moduleID = int(lessonSplit[0])+1
+                        lessonID = 1
+                        nextProgressCode = "t-1"
+                        nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+                        if nextProgress:
+                            nextProgressData = {
+                                'order': lessonID,
+                                'currentProgress': str(moduleID)+"-1-t-1",
+                                'status': "new",
+                                'progress': tempNextProgressData
+                            }
+                            nextProgressIsAvailable = False
+                        else:
+                            nextProgressIsAvailable = False
+        elif progressSplit[0] == 's':
+            moduleID = int(lessonSplit[0])
+            lessonID = int(lessonSplit[1])+1
+            nextProgressCode = "t-1"
+            nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+            if nextProgress:
+                nextProgressIsAvailable = False
+            else:
+                moduleID = int(lessonSplit[0])+1
+                lessonID = 1
+                nextProgressCode = "t-1"
+                nextProgress = checkNextProgress(moduleID, lessonID, nextProgressCode)
+                if nextProgress:
+                    nextProgressData = {
+                        'order': lessonID,
+                        'currentProgress': str(moduleID)+"-1-t-1",
+                        'status': "new",
+                        'progress': tempNextProgressData
+                    }
+                    nextProgressIsAvailable = False
+                else:
+                    nextProgressIsAvailable = False
+        nextProgressIsAvailable = False    
+    return {'progress': nextProgress, 'progressData': nextProgressData}       
+
+
 @progress.route('/data', methods=['POST'])
 @jwt_required()
 @cross_origin()
@@ -289,8 +419,11 @@ def store():
                     query['lessons.theory.order'] = int(progressSplit[1])
                 elif progressSplit[0] == "q":
                     query['lessons.quiz.order'] = int(progressSplit[1])
+                    
+                # print(query)
 
                 checkCurrentModule = list(moduleDB.find(query))
+                # print(len(checkCurrentModule))
 
                 if len(checkCurrentModule) > 0:
                     # check progress is never save before ?
@@ -298,15 +431,15 @@ def store():
                         progressDB.find({'email': currentAccount}))
 
                     # find next progress
-                    progress = findNextProgress(request)
-                    nextProgressData = progress['progressData']
-                    nextProgress = progress['progress']
+                    progress = findNext(request)
+                    nextProgressData = progress['progress']
+                    nextProgress = progress['progressData']
                     tempNextProgressData = []
                     tempNextProgressData.append(nextProgressData)
 
                     print(nextProgressData)
                     print(nextProgress)
-                    print(tempNextProgressData)
+                    # print(tempNextProgressData)
                     if len(progressIsAvailable) > 0:
                         print('masuk sini 1')
                         # check how much this account doing progress
@@ -314,17 +447,16 @@ def store():
                             print('masuk sini 2')
                             for iprogres, progress in enumerate(progressIsAvailable[0]['allProgress']):
                                 print(iprogres)
-                                print(progressIsAvailable[0]['allProgress'])
+                                # print(progressIsAvailable[0]['allProgress'])
                                 # check if this account have doing this lesson before
                                 if progress['order'] == int(lessonSplit[0]):
                                     print('masuk sini 4')
                                     # check if this account have doing progress ?
                                     if len(progress['progress']) > 0:
                                         for progressItem in progress['progress']:
+                                            print(progressItem)
                                             if progressItem['lesson'] == request.form['lesson'] and progressItem['progress'] == request.form['progress'] and progressItem['status'] != 'done':
                                                 print('masuk sini 5')
-                                                print(nextProgressData['lesson'])
-                                                print(request.form['lesson'])
                                                 progressDB.update_one(
                                                     {
                                                         'email': currentAccount
@@ -333,7 +465,7 @@ def store():
                                                         "$set": {
                                                             'lastLearn': lastLearn,
                                                             'allProgress.$[module].currentProgress': currentProgressCode,
-                                                            'allProgress.$[module].status': "done" if progressSplit[0] == "s" and lessonSplit[0] != nextProgressData['lesson'].split('-')[0] else "in_progress",
+                                                            'allProgress.$[module].status': "done" if progressSplit[0] == "s" and not nextProgress and not nextProgressData or progressSplit[0] == "s" and nextProgressData and lessonSplit[0] != nextProgressData['lesson'].split('-')[0] else "in_progress",
                                                             'allProgress.$[module].progress.$[lesson]': progressData
                                                         }
                                                     },
@@ -353,31 +485,33 @@ def store():
                                                         }
                                                     ]
                                                 )
+                                                print('masuk sini 5.1')
                                                 
                                                 results['levelUp'] = False
                                                 results['newAchievement'] = False
                                                 
-                                                # check new achievement theory
-                                                newAchivementTheory = achievementUtils.checkAchievementTheory(currentAccount)
-                                                if newAchivementTheory['status'] == 'success':
-                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementTheory['levelUp'] == True else False
-                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementTheory['status'] == 'success' else False
-                                                    results['newAchievementMsg'] = newAchivementTheory['message']
-                                                else:
-                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementTheory['levelUp'] == True else False
-                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementTheory['status'] == 'success' else False
-                                                    results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementTheory['message']
-                                                    
-                                                # check new achievement quizz
-                                                newAchivementQuizz = achievementUtils.checkAchievementQuizz(currentAccount)
-                                                if newAchivementQuizz['status'] == 'success':
-                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementQuizz['levelUp'] == True else False
-                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementQuizz['status'] == 'success' else False
-                                                    results['newAchievementMsg'] = newAchivementQuizz['message']
-                                                else:
-                                                    results['levelUp'] = True if results['levelUp'] == True or newAchivementQuizz['levelUp'] == True else False
-                                                    results['newAchievement'] = True if results['newAchievement'] == True or newAchivementQuizz['status'] == 'success' else False
-                                                    results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementTheory['message']
+                                                if progressSplit[0] == "t":
+                                                    # check new achievement theory
+                                                    newAchivementTheory = achievementUtils.checkAchievementTheory(currentAccount)
+                                                    if newAchivementTheory['status'] == 'success':
+                                                        results['levelUp'] = True if results['levelUp'] == True or newAchivementTheory['levelUp'] == True else False
+                                                        results['newAchievement'] = True if results['newAchievement'] == True or newAchivementTheory['status'] == 'success' else False
+                                                        results['newAchievementMsg'] = newAchivementTheory['message']
+                                                    else:
+                                                        results['levelUp'] = True if results['levelUp'] == True or newAchivementTheory['levelUp'] == True else False
+                                                        results['newAchievement'] = True if results['newAchievement'] == True or newAchivementTheory['status'] == 'success' else False
+                                                        results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementTheory['message']
+                                                if progressSplit[0] == "q":  
+                                                    # check new achievement quizz
+                                                    newAchivementQuizz = achievementUtils.checkAchievementQuizz(currentAccount)
+                                                    if newAchivementQuizz['status'] == 'success':
+                                                        results['levelUp'] = True if results['levelUp'] == True or newAchivementQuizz['levelUp'] == True else False
+                                                        results['newAchievement'] = True if results['newAchievement'] == True or newAchivementQuizz['status'] == 'success' else False
+                                                        results['newAchievementMsg'] = newAchivementQuizz['message']
+                                                    else:
+                                                        results['levelUp'] = True if results['levelUp'] == True or newAchivementQuizz['levelUp'] == True else False
+                                                        results['newAchievement'] = True if results['newAchievement'] == True or newAchivementQuizz['status'] == 'success' else False
+                                                        results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementTheory['message']
                                                     
                                                 if nextProgressData and progressSplit[0] != "s":
                                                     print('masuk sini 7')
@@ -453,7 +587,8 @@ def store():
                                                     }
                                                     if len(checkScoreBoard) > 0:
                                                         scoreboardCollection.update_one({
-                                                            'email': currentAccount
+                                                            'email': currentAccount,
+                                                            'lesson': request.form['lesson']
                                                         },
                                                         {
                                                             '$set': scoreboardData
@@ -520,22 +655,6 @@ def store():
                                                             "levelName": newLevelName
                                                         }       
                                                     })
-                                                    
-                                                    # if levelFind[0]['exp'] >= currentExp:
-                                                    #     accountCollection.update_one({
-                                                    #         "email": currentAccount
-                                                    #     },
-                                                    #     {
-                                                    #         "$set": {
-                                                    #             "exp": currentExp,
-                                                    #             "level": int(levelFind[0]['level']),
-                                                    #             "expNext": int(levelFind[0]['exp']) if len(levelFind) > 1 else int(levelFind[0]['exp']),
-                                                    #             "levelName": levelFind[0]['name'] if len(levelFind) > 1 else levelFind[0]['name']
-                                                    #         }       
-                                                    #     })
-                                                    # # if level up
-                                                    # if str(account[0]['level']) != str(int(levelFind[0]['level'])) and int(levelFind[0]['level']) > account[0]['level']:
-                                                    #     results['levelUp'] = True
                                                         
                                                     # save to scoreboard
                                                     checkScoreBoard = list(scoreboardCollection.find({'email': currentAccount, 'lesson': request.form['lesson']}))
@@ -550,7 +669,8 @@ def store():
                                                     }
                                                     if len(checkScoreBoard) > 0:
                                                         scoreboardCollection.update_one({
-                                                            'email': currentAccount
+                                                            'email': currentAccount,
+                                                            'lesson': request.form['lesson']
                                                         },
                                                         {
                                                             '$set': scoreboardData
@@ -559,23 +679,30 @@ def store():
                                                         scoreboardCollection.insert_one(scoreboardData)
 
                                                     # update progress + next progress
-                                                    tempNextProgressData.append(
-                                                        nextProgressData)
-                                                    nextProgress['progress'] = tempNextProgressData
-                                                    progressDB.update_one(
-                                                        {
-                                                            'email': currentAccount
-                                                        },
-                                                        {
-                                                            "$push": {
-                                                                'allProgress': nextProgress
-                                                            }
-                                                        }
-                                                    )
+                                                    if nextProgress:
+                                                        nextProgressID = nextProgress['currentProgress'].split('-')
+                                                        checkProgress = checkNextProgress(int(nextProgressID[0]), int(nextProgressID[1]), nextProgressID[2]+"-"+nextProgressID[3])
+                                                        if not checkProgress:
+                                                            tempNextProgressData.append(
+                                                                nextProgressData)
+                                                            nextProgress['progress'] = tempNextProgressData
+                                                            progressDB.update_one(
+                                                                {
+                                                                    'email': currentAccount
+                                                                },
+                                                                {
+                                                                    "$push": {
+                                                                        'allProgress': nextProgress
+                                                                    }
+                                                                }
+                                                            )
                                     break
                                 elif iprogres == len(progressIsAvailable[0]['allProgress'])-1:
-                                    print('masuk sini 5')
-                                    tempprogressData.append(nextProgressData)
+                                    print('masuk sini 55')
+                                    if nextProgressData:
+                                        tempprogressData.append(nextProgressData)
+                                        print('masuk sini 5.1')
+                                    print('masuk sini 5.2')
                                     progressDB.update_one(
                                         {
                                             'email': currentAccount
@@ -589,6 +716,7 @@ def store():
                                             }
                                         }
                                     )
+                                    print('masuk sini 5.3')
                         else:
                             print('masuk sini 3')
                             if request.form['status'] == "done":

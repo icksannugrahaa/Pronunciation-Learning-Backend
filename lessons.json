@@ -1,232 +1,935 @@
-{
-    "_id": {
-        "$oid": "62bee22833ea3abb5e5b0dcc"
-    },
-    "name": "Conversation",
-    "description": "These lessons cover a variety of topics to help beginner to advanced students improve their communication skills.",
-    "highscore": 0,
-    "level": 1,
-    "order": 2,
-    "rating": 0,
-    "required": false,
-    "lessons": [
-        {
-            "order": 1,
-            "name": "Nice To Meet You",
-            "description": "After this lesson, you will practice the letters of the alphabet and learn how to give and spell your name",
-            "level": 1,
-            "exp": 1000,
-            "enableSkip": false,
-            "option": {
-                "quiz": true,
-                "theory_type": "text",
-                "quiz_type": "text",
-                "summary": false,
-                "summary_type": ""
-            },
-            "theory": [
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: Hi, my name is Ms. Smith. Nice to meet you. $you: Hello, Ms. Smith. Nice to meet you too. Teacher: What is your name? $you: My name is $you. Teacher: $You? $you: Yes. Teacher: How do you spell your name? $you: $youSpell. Teacher: $youSpell, right? $you: Yes, that's right. Teacher: Thank you. $you: You're welcome.",
-                    "order": 1,
-                    "image": null
-                }
-            ],
-            "quiz": [
-                {
-                    "title": "Quiz, Answer that question : ",
-                    "question": "Hi, my name is $you. Nice to meet you. ",
-                    "image": null,
-                    "order": 1,
-                    "answer": [
-                        "Hello, $you. Nice to meet you too.",
-                        "Nice to meet you too, $you."
-                    ]
-                },
-                {
-                    "title": "Quiz, Answer that question : ",
-                    "question": "What is your name ?. ",
-                    "image": null,
-                    "order": 2,
-                    "answer": [
-                        "My name is $you.",
-                        "My name $you.",
-                        "$you",
-                        "I am $you",
-                        "You can call me $you",
-                        "Call me $you"
-                    ]
-                },
-                {
-                    "title": "Quiz, Answer that question : ",
-                    "question": "How do you spell your name?. ",
-                    "image": null,
-                    "order": 3,
-                    "answer": [
-                        "$youSpell."
-                    ]
-                }
-            ],
-            "summary": null,
-            "requirements": {
-                "level": 1
-            }
+[
+    {
+        "_id": {
+            "$oid": "62bd8fe4caedf616c04007c4"
         },
-        {
-            "order": 2,
-            "name": "How Are You?",
-            "description": "After this lesson, you will Learn how to talk about how you are and learn how to talk about where you are from and what language you speak",
-            "level": 1,
-            "exp": 1200,
-            "enableSkip": false,
-            "option": {
-                "quiz": true,
-                "theory_type": "text,image",
-                "quiz_type": "text",
-                "summary": false,
-                "summary_type": null
-            },
-            "theory": [
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: How are you?. $you: I am tired.",
-                    "order": 1,
-                    "image": "/api/file/show?filename=tired.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
-                },
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: How are you?. $you: I am good.",
-                    "order": 2,
-                    "image": "/api/file/show?filename=good.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
-                },
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: How are you?. $you: I am sick.",
-                    "order": 3,
-                    "image": "/api/file/show?filename=sick.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
-                },
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: Where are you from?. $you: I am from Indonesian.",
-                    "order": 4,
-                    "image": "/api/file/show?filename=indonesian.jpg&path=/lessons/lesson-2/lesson-2-2/images"
-                },
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: Where are you from?. $you: I am from Japanese.",
-                    "order": 5,
-                    "image": "/api/file/show?filename=japan.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
-                },
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: Where are you from?. $you: I am from Thailand.",
-                    "order": 6,
-                    "image": "/api/file/show?filename=thai.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
-                },
-                {
-                    "title": "Please read this dialog and try to record !",
-                    "question": "Teacher: Hi, $you. How are you? $you: I am good, thanks. How about you? Teacher: I am tired. Where are you from? $you: I am from Indonesian. Where are you from?. Teacher: I am from England. $you: What language do you speak? Teacher: I speak English and Japanese. How about you? Do you speak Japanese?. $you: No, I don't. I speak Indonesian. Teacher: Do you speak English?. $you: Yes, I speak English. Teacher: Thanks, $you. See you later. $you: Goodbye. See you later.",
-                    "order": 7,
-                    "image": "/api/file/show?filename=thai.jpeg&path=/lessons/lesson-2/lesson-2-2/images"
-                }
-            ],
-            "quiz": [
-                {
-                    "title": "Quiz, Answer that question : ",
-                    "question": "Hi $you. How are you ?. ",
-                    "image": "",
-                    "order": 1,
-                    "answer": [
-                        "I am good, thanks. How about you ?.",
-                        "I am good, thanks, and you ?.",
-                        "Good, thanks. How about you ?.",
-                        "Good, thanks, and you ?.",
-                        "I am great, thanks. How about you ?.",
-                        "I am great, thanks, and you ?.",
-                        "Great, thanks. How about you ?.",
-                        "Great, thanks, and you ?.",
-                        "I am fine, thanks. How about you ?.",
-                        "I am fine, thanks, and you ?.",
-                        "Fine, thanks. How about you ?.",
-                        "Fine, thanks, and you ?."
-                    ]
-                },
-                {
-                    "title": "Quiz, Answer that question : ",
-                    "question": "Where are you from ?. ",
-                    "image": "",
-                    "order": 2,
-                    "answer": [
-                        "I am from $country.",
-                        "I am from $country, how about you ?.",
-                        "I am from $country, and you ?."
-                    ]
-                },
-                {
-                    "title": "Quiz, Answer that question : ",
-                    "question": "What language do you speak ?. ",
-                    "image": "",
-                    "order": 3,
-                    "answer": [
-                        "I speak $language."
-                    ]
-                }
-            ],
-            "summary": null,
-            "requirements": {
+        "name": "English For Kids",
+        "description": "Kursus ini membantu anak-anak untuk mempelajari dasar-dasar bahasa Inggris, mulai dari alfabet hingga kata dan kalimat sederhana.",
+        "highscore": 0,
+        "level": 1,
+        "order": 1,
+        "rating": 0,
+        "required": false,
+        "lessons": [
+            {
+                "order": 1,
+                "name": "Alphabet (A-F)",
+                "description": "Setelah pelajaran ini, Anda akan dapat mengenali huruf A - F dan beberapa kata yang dimulai dengan huruf tersebut.",
                 "level": 1,
-                "lesson": "2-1"
+                "exp": 500,
+                "enableSkip": true,
+                "option": {
+                    "quiz": true,
+                    "theory_type": "text,image",
+                    "quiz_type": "text,image",
+                    "summary": true,
+                    "summary_type": "text,image,song"
+                },
+                "theory": [
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Apple",
+                        "order": 1,
+                        "image": "/api/file/show?filename=apple.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Ant",
+                        "order": 2,
+                        "image": "/api/file/show?filename=ant.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Bear",
+                        "order": 3,
+                        "image": "/api/file/show?filename=bear.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Bee",
+                        "order": 4,
+                        "image": "/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Cat",
+                        "order": 5,
+                        "image": "/api/file/show?filename=cat.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Carrot",
+                        "order": 6,
+                        "image": "/api/file/show?filename=carrot.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Dog",
+                        "order": 7,
+                        "image": "/api/file/show?filename=dog.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Doll",
+                        "order": 8,
+                        "image": "/api/file/show?filename=doll.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Egg",
+                        "order": 9,
+                        "image": "/api/file/show?filename=egg.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Elephant",
+                        "order": 10,
+                        "image": "/api/file/show?filename=elephant.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Frog",
+                        "order": 11,
+                        "image": "/api/file/show?filename=frog.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Flower",
+                        "order": 12,
+                        "image": "/api/file/show?filename=flower.png&path=/lessons/lesson-1/lesson-1-1/images"
+                    }
+                ],
+                "quiz": [
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=frog.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 1,
+                        "answer": [
+                            "It's a frog",
+                            "This is frog",
+                            "It is a frog",
+                            "It is frog",
+                            "It's frog",
+                            "That is frog",
+                            "a frog",
+                            "frog"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=ant.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 2,
+                        "answer": [
+                            "Ant",
+                            "a Ant",
+                            "It's a ant",
+                            "It is a ant",
+                            "This is ant",
+                            "That is ant",
+                            "It's ant",
+                            "It is ant"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=flower.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 3,
+                        "answer": [
+                            "Flower",
+                            "a Flower",
+                            "It's a flower",
+                            "It's flower",
+                            "This is flower",
+                            "That is flower",
+                            "It is a flower",
+                            "It is flower"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=apple.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 4,
+                        "answer": [
+                            "Apple",
+                            "a Apple",
+                            "It's a Apple",
+                            "It's Apple",
+                            "That is Apple",
+                            "This is Apple",
+                            "It is Apple",
+                            "It is a Apple"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=bee.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 5,
+                        "answer": [
+                            "Bee",
+                            "a Bee",
+                            "It's a Bee",
+                            "It's Bee",
+                            "It is Bee",
+                            "It is a Bee",
+                            "That is Bee",
+                            "This is Bee"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=elephant.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 6,
+                        "answer": [
+                            "Elephant",
+                            "a Elephant",
+                            "It's a Elephant",
+                            "It's Elephant",
+                            "It is Elephant",
+                            "It is a Elephant",
+                            "This is Elephant",
+                            "That is Elephant"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=dog.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 7,
+                        "answer": [
+                            "Dog",
+                            "a Dog",
+                            "This is Dog",
+                            "That is Dog",
+                            "It is Dog",
+                            "It is a Dog",
+                            "It's Dog",
+                            "It's a Dog"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=egg.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 8,
+                        "answer": [
+                            "Egg",
+                            "a Egg",
+                            "This is Egg",
+                            "That is Egg",
+                            "It is Egg",
+                            "It is a Egg",
+                            "It's a Egg",
+                            "It's Egg"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=doll.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 9,
+                        "answer": [
+                            "Doll",
+                            "a Doll",
+                            "This is Doll",
+                            "That is Doll",
+                            "It is Doll",
+                            "It is a Doll",
+                            "It's a Doll",
+                            "It's Doll"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=carrot.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 10,
+                        "answer": [
+                            "Carrot",
+                            "a Carrot",
+                            "This is Carrot",
+                            "That is Carrot",
+                            "It is Carrot",
+                            "It is a Carrot",
+                            "It's a Carrot",
+                            "It's Carrot"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=cat.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 11,
+                        "answer": [
+                            "Cat",
+                            "a Cat",
+                            "This is Cat",
+                            "That is Cat",
+                            "It is Cat",
+                            "It is a Cat",
+                            "It's a Cat",
+                            "It's Cat"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=bear.png&path=/lessons/lesson-1/lesson-1-1/images",
+                        "order": 12,
+                        "answer": [
+                            "Bear",
+                            "a Bear",
+                            "This is Bear",
+                            "That is Bear",
+                            "It is Bear",
+                            "It is a Bear",
+                            "It's a Bear",
+                            "It's Bear"
+                        ]
+                    }
+                ],
+                "summary": {
+                    "title": "Kesimpulan",
+                    "text": "Mari bernyanyi ...",
+                    "song": "/api/file/show?filename=song-lesson-1-1.mp3&path=/lessons/lesson-1/lesson-1-1/songs",
+                    "image": "/api/file/show?filename=orang-nyanyi.png&path=/images"
+                },
+                "requirements": {
+                    "level": 1
+                }
+            },
+            {
+                "order": 2,
+                "name": "Alphabet (G-M)",
+                "description": "Setelah pelajaran ini, Anda akan dapat mengenali huruf G - M dan beberapa kata yang dimulai dengan huruf tersebut.",
+                "level": 1,
+                "exp": 500,
+                "enableSkip": true,
+                "option": {
+                    "quiz": true,
+                    "theory_type": "text,image",
+                    "quiz_type": "text,image",
+                    "summary": true,
+                    "summary_type": "text,song"
+                },
+                "theory": [
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Grape",
+                        "order": 1,
+                        "image": "/api/file/show?filename=grape.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Goat",
+                        "order": 2,
+                        "image": "/api/file/show?filename=goat.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Hat",
+                        "order": 3,
+                        "image": "/api/file/show?filename=hat.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Heart",
+                        "order": 4,
+                        "image": "/api/file/show?filename=heart.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is In",
+                        "order": 5,
+                        "image": "/api/file/show?filename=in.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Ill",
+                        "order": 6,
+                        "image": "/api/file/show?filename=ill.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Jump",
+                        "order": 7,
+                        "image": "/api/file/show?filename=jump.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Jam",
+                        "order": 8,
+                        "image": "/api/file/show?filename=jam.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Key",
+                        "order": 9,
+                        "image": "/api/file/show?filename=key.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Kite",
+                        "order": 10,
+                        "image": "/api/file/show?filename=kite.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Lion",
+                        "order": 11,
+                        "image": "/api/file/show?filename=lion.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Lemon",
+                        "order": 12,
+                        "image": "/api/file/show?filename=lemon.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Mouse",
+                        "order": 13,
+                        "image": "/api/file/show?filename=mouse.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    },
+                    {
+                        "title": "Teori",
+                        "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
+                        "question": "This is Melon",
+                        "order": 14,
+                        "image": "/api/file/show?filename=melon.png&path=/lessons/lesson-1/lesson-1-2/images"
+                    }
+                ],
+                "quiz": [
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=jump.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 1,
+                        "answer": [
+                            "Jump",
+                            "a Jump",
+                            "This is Jump",
+                            "That is Jump",
+                            "It is Jump",
+                            "It is a Jump",
+                            "It's a Jump",
+                            "It's Jump"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=lion.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 2,
+                        "answer": [
+                            "Lion",
+                            "a Lion",
+                            "This is Lion",
+                            "That is Lion",
+                            "It is Lion",
+                            "It is a Lion",
+                            "It's a Lion",
+                            "It's Lion"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=grape.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 3,
+                        "answer": [
+                            "Grape",
+                            "a Grape",
+                            "This is Grape",
+                            "That is Grape",
+                            "It is Grape",
+                            "It is a Grape",
+                            "It's a Grape",
+                            "It's Grape"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=jam.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 4,
+                        "answer": [
+                            "Jam",
+                            "a Jam",
+                            "This is Jam",
+                            "That is Jam",
+                            "It is Jam",
+                            "It is a Jam",
+                            "It's a Jam",
+                            "It's Jam"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=mouse.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 5,
+                        "answer": [
+                            "Mouse",
+                            "a Mouse",
+                            "This is Mouse",
+                            "That is Mouse",
+                            "It is Mouse",
+                            "It is a Mouse",
+                            "It's a Mouse",
+                            "It's Mouse"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=hat.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 6,
+                        "answer": [
+                            "Hat",
+                            "a Hat",
+                            "This is Hat",
+                            "That is Hat",
+                            "It is Hat",
+                            "It is a Hat",
+                            "It's a Hat",
+                            "It's Hat"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=in.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 7,
+                        "answer": [
+                            "In",
+                            "a In",
+                            "This is In",
+                            "That is In",
+                            "It is In",
+                            "It is a In",
+                            "It's a In",
+                            "It's In"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=goat.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 8,
+                        "answer": [
+                            "Goat",
+                            "a Goat",
+                            "This is Goat",
+                            "That is Goat",
+                            "It is Goat",
+                            "It is a Goat",
+                            "It's a Goat",
+                            "It's Goat"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=key.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 9,
+                        "answer": [
+                            "Key",
+                            "a Key",
+                            "This is Key",
+                            "That is Key",
+                            "It is Key",
+                            "It is a Key",
+                            "It's a Key",
+                            "It's Key"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=heart.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 10,
+                        "answer": [
+                            "Heart",
+                            "a Heart",
+                            "This is Heart",
+                            "That is Heart",
+                            "It is Heart",
+                            "It is a Heart",
+                            "It's a Heart",
+                            "It's Heart"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=ill.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 11,
+                        "answer": [
+                            "Ill",
+                            "a Ill",
+                            "This is Ill",
+                            "That is Ill",
+                            "It is Ill",
+                            "It is a Ill",
+                            "It's a Ill",
+                            "It's Ill"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=lemon.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 12,
+                        "answer": [
+                            "Lemon",
+                            "a Lemon",
+                            "This is Lemon",
+                            "That is Lemon",
+                            "It is Lemon",
+                            "It is a Lemon",
+                            "It's a Lemon",
+                            "It's Lemon"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=kite.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 13,
+                        "answer": [
+                            "Kite",
+                            "a Kite",
+                            "This is Kite",
+                            "That is Kite",
+                            "It is Kite",
+                            "It is a Kite",
+                            "It's a Kite",
+                            "It's Kite"
+                        ]
+                    },
+                    {
+                        "title": "Kuis",
+                        "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
+                        "question": "What picture is that ?",
+                        "image": "/api/file/show?filename=melon.png&path=/lessons/lesson-1/lesson-1-2/images",
+                        "order": 14,
+                        "answer": [
+                            "Melon",
+                            "a Melon",
+                            "This is Melon",
+                            "That is Melon",
+                            "It is Melon",
+                            "It is a Melon",
+                            "It's a Melon",
+                            "It's Melon"
+                        ]
+                    }
+                ],
+                "summary": {
+                    "title": "Kesimpulan",
+                    "text": "Mari bernyanyi ...",
+                    "song": "/api/file/show?filename=song-lesson-1-2.mp3&path=/lessons/lesson-1/lesson-1-2/songs",
+                    "image": "/api/file/show?filename=orang-nyanyi.png&path=/images"
+                },
+                "requirements": {
+                    "level": 1,
+                    "lesson": "1-1"
+                }
             }
-        }
-    ],
-    "comments": [
-        {
-            "name": "Icksan",
-            "comment": "Nice class",
-            "rating": 4,
-            "createdAt": "2020-05-16 00:00:00",
-            "avatar": "/api/file/show?filename=guest.png&path=/images"
+        ],
+        "comments": [
+            {
+                "name": "Icksan",
+                "comment": "Nice class",
+                "rating": 4,
+                "createdAt": "2022-05-17 00:00:00",
+                "avatar": "/api/file/show?filename=guest.png&path=/images",
+                "email": "icksannugrahaa@gmail.com"
+            },
+            {
+                "name": "Thomas Alfa Indomaret",
+                "email": "test@gmail.com",
+                "comment": "mantep slurr, jos gandos lah pokona hehehehe",
+                "createdAt": "2022-08-13 09:08:03",
+                "rating": 4.5,
+                "avatar": null
+            },
+            {
+                "name": "Gerad Wijaya ",
+                "email": "fyzyhaba@decabg.eu",
+                "comment": "module nya bukan kaleng2, tapi aplikasi masih seadanya ya, semangat dev",
+                "createdAt": "2022-08-13 13:48:37",
+                "rating": 5,
+                "avatar": "/api/file/show?filename=guest.png&path=/images"
+            }
+        ],
+        "successful": 0,
+        "status": true,
+        "requirements": {
+            "level": 1
         },
-        {
-            "name": "Restu",
-            "comment": "So easy for me",
-            "rating": 5,
-            "createdAt": "2022-06-20 00:00:00",
-            "avatar": "/api/file/show?filename=guest.png&path=/images"
-        },
-        {
-            "name": "Sherly",
-            "comment": "Gampang kelasnya ga ada yg susah apa",
-            "rating": 5,
-            "createdAt": "2022-06-22 00:00:00",
-            "avatar": "/api/file/show?filename=guest.png&path=/images"
-        },
-        {
-            "name": "Suchi",
-            "comment": "Ahh Gampang ini mah",
-            "rating": 5,
-            "createdAt": "2022-06-22 00:00:00",
-            "avatar": "/api/file/show?filename=guest.png&path=/images"
-        },
-        {
-            "name": "Rezky",
-            "comment": "Susah banget",
-            "rating": 3,
-            "createdAt": "2022-06-23 00:00:00",
-            "avatar": "/api/file/show?filename=guest.png&path=/images"
-        },
-        {
-            "name": "Encep",
-            "comment": "Ezz bet can",
-            "rating": 5,
-            "createdAt": "2022-07-01 00:00:00",
-            "avatar": "/api/file/show?filename=guest.png&path=/images"
-        }
-    ],
-    "successful": 2,
-    "status": true,
-    "requirements": {
-        "level": 1
+        "image": "/api/file/show?filename=bg-lesson-1.jpg&path=/images"
     },
-    "image": "/api/file/show?filename=bg-lesson-2.jpg&path=/images"
-}
+    {
+        "_id": {
+            "$oid": "62bd8fe4caedf616c04007c5"
+        },
+        "name": "Grammar",
+        "description": "Kursus ini mengajarkan konsep dasar tata bahasa Inggris yang diperlukan untuk berbicara dan menulis secara akurat. Topik termasuk struktur kalimat, bentuk kata kerja, kata depan, dan banyak lagi.",
+        "highscore": 0,
+        "level": 1,
+        "order": 2,
+        "rating": 0,
+        "required": false,
+        "lessons": [
+            {
+                "order": 1,
+                "name": "I am a cook, SVC (Subject Pronouns + Be)",
+                "description": "Dengan kata ganti dan kata kerja 'be', Anda akan dapat memberikan informasi dasar tentang suatu subjek.",
+                "level": 1,
+                "exp": 500,
+                "enableSkip": true,
+                "option": {
+                    "quiz": true,
+                    "theory_type": "text",
+                    "quiz_type": "text",
+                    "summary": true,
+                    "summary_type": "text,image"
+                },
+                "theory": [
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "I am a cook",
+                        "order": 1,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "Sally and I are cooks",
+                        "order": 2,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "We are cooks",
+                        "order": 3,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "You are a cook",
+                        "order": 4,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "You are cooks",
+                        "order": 5,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "John is a cook",
+                        "order": 6,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "He is a cook",
+                        "order": 7,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "Susan is a cook",
+                        "order": 8,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "She is a cook",
+                        "order": 9,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "Susan and John are cooks",
+                        "order": 10,
+                        "image": ""
+                    },
+                    {
+                        "title": "Latihan kalimat",
+                        "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+                        "question": "They are cooks",
+                        "order": 11,
+                        "image": ""
+                    }
+                ],
+                "quiz": [
+                    {
+                        "title": "Kuis - Lengkapi Kalimat",
+                        "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+                        "question": "I __ a soldier",
+                        "image": "",
+                        "order": 1,
+                        "answer": [
+                            "am",
+                            "Am"
+                        ]
+                    },
+                    {
+                        "title": "Kuis - Lengkapi Kalimat",
+                        "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+                        "question": "You __ a painter",
+                        "image": "",
+                        "order": 2,
+                        "answer": [
+                            "are",
+                            "Are"
+                        ]
+                    },
+                    {
+                        "title": "Kuis - Lengkapi Kalimat",
+                        "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+                        "question": "She __ a cashier",
+                        "image": "",
+                        "order": 3,
+                        "answer": [
+                            "is",
+                            "Is"
+                        ]
+                    },
+                    {
+                        "title": "Kuis - Lengkapi Kalimat",
+                        "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+                        "question": "We __ barbers",
+                        "image": "",
+                        "order": 4,
+                        "answer": [
+                            "are",
+                            "Are"
+                        ]
+                    },
+                    {
+                        "title": "Kuis - Lengkapi Kalimat",
+                        "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+                        "question": "They __ Waiters",
+                        "image": "",
+                        "order": 4,
+                        "answer": [
+                            "are",
+                            "Are"
+                        ]
+                    }
+                ],
+                "summary": {
+                    "title": "Kesimpulan",
+                    "text": "<b>Grammar fokus</b> <br> 'I am a cook' adalah contoh pola kalimat yang sangat mendasar dalam bahasa Inggris: Subject + Verb + Complement (SVC). 'I' adalah subjeknya. 'Am' adalah kata kerja. 'A cook' adalah pelengkap subjek. Pelajaran ini akan fokus pada subjek dan kata kerja. <br> <b>Subjek</b> <br>Subjek adalah bagian pertama dari kalimat SVC 'I am a cook'. Subjek adalah fokus kalimat. Jenis subjek yang paling dasar adalah kata benda, yaitu orang (Sally), tempat (the park), atau benda (a movie). Alih-alih kata benda, kita juga bisa menggunakan kata ganti subjek pribadi. <br>Ini adalah kata ganti subjek pribadi orang pertama: <li>I</li> <li>we (jamak dari 'I', dapat menggantikan 'Sally and I')</li> <br> Ini adalah kata ganti subjek pribadi orang ke-2: <li>you (tunggal dan jamak) </li> <br>Ini adalah kata ganti subjek pribadi orang ke-3: - he (pria, dapat menggantikan 'John') <br>- she (perempuan, bisa menggantikan 'Sally') <br>- it (benda atau binatang) <br>- they (jamak dari 'he'/'she'/'it', dapat menggantikan 'Sally and John') <br><br>Kata kerja penghubung 'be' <br>Kata kerja penghubung adalah bagian kedua dari kalimat 'I am a cook'. Ini menghubungkan (connects) subjek 'I' dengan informasi tentang subjek, 'a cook'. Kata kerja penghubung yang paling dasar adalah 'be'. <br><br>Dalam bahasa Inggris, subjek adalah bagian terpenting dari kalimat. Kata kerja, seperti 'be', berubah bentuk menjadi 'agree with' subjeknya. Bentuk 'be' adalah: am, are, and is.<br>- Saya seorang koki. <br>- Anda seorang juru masak. <br>- Kami adalah juru masak. <br>- Mereka adalah juru masak. <br>- Dia adalah seorang juru masak. <br>- Ini adalah film. <br><br>Singkatan <br><br>Saat berbicara, kita sering menyingkat (i.e. shorten) kata atau frasa. Banyak frasa dengan kata kerja penghubung disingkat menggunakan apostrof ('): <br>- I am a cook → I'm a cook. <br>- We are cooks → We're cooks. <br>- You are a cook → You're a cook. <br>- They are cooks → They're cooks. <br>- He is a cook → He's a cook. <br>- She is a cook → She's a cook.- It is a movie → It's a movie.",
+                    "song": "",
+                    "image": ""
+                },
+                "requirements": {
+                    "level": 1
+                }
+            }
+        ],
+        "comments": [
+            {
+                "name": "Icksan",
+                "comment": "Nice class",
+                "rating": 4,
+                "createdAt": "2022-05-17 00:00:00",
+                "avatar": "/api/file/show?filename=guest.png&path=/images",
+                "email": "icksannugrahaa@gmail.com"
+            },
+            {
+                "name": "Thomas Alfa Indomaret",
+                "email": "test@gmail.com",
+                "comment": "mantep slurr, jos gandos lah pokona hehehehe",
+                "createdAt": "2022-08-13 09:08:03",
+                "rating": 4.5,
+                "avatar": null
+            },
+            {
+                "name": "Gerad Wijaya ",
+                "email": "fyzyhaba@decabg.eu",
+                "comment": "module nya bukan kaleng2, tapi aplikasi masih seadanya ya, semangat dev",
+                "createdAt": "2022-08-13 13:48:37",
+                "rating": 5,
+                "avatar": "/api/file/show?filename=guest.png&path=/images"
+            }
+        ],
+        "successful": 0,
+        "status": true,
+        "requirements": {
+            "level": 1
+        },
+        "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
+    }
+]

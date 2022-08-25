@@ -72,9 +72,15 @@ def checkAchievementTheory(email):
                             print("achievement 7")
                             # check progress
                             for progressItem in progress['progress']:
-                                progressType = progressItem['progress'].split("-")[0]
-                                if progressType == "t" and progressItem['status'] == "done":
-                                    progressDone += 1
+                                
+                                print("achievement 7.1")
+                                # print(progressItem)
+                                if 'progress' in progressItem:
+                                    progressType = progressItem['progress'].split("-")[0]
+                                    if progressType == "t" and progressItem['status'] == "done":
+                                        progressDone += 1
+                                else:
+                                    break
                             print("achievement 12")   
                             
                     # find achievement
@@ -87,34 +93,56 @@ def checkAchievementTheory(email):
                         print("achievement 1")
                         newLevel = {}
                         expEarned = 0
-                        for userAchievement in account[0]['achievement']:
-                            for achievement in achievementData[0]['level']:
-                                if userAchievement['name'] == achievementData[0]['name']:
-                                    for userAchievementLevel in userAchievement['level']:
-                                        if progressDone == achievement['requirements']['theory']:
-                                            if  achievement['level'] >= userAchievementLevel['level']:
-                                                newLevel = {
-                                                    "name": achievement['name'],
-                                                    "description": achievement['description'],
-                                                    "level": achievement['level'],
-                                                    "createdAt": dateNow
-                                                }
-                                                expEarned = achievement['exp']
-                        if newLevel is not None and len(newLevel) > 0:
-                            accountCollection.update_one(
-                                {
-                                    "email": email,
-                                    "achievement.name": achievementData[0]['name']
-                                },
-                                {
-                                    "$push": {
-                                        'achievement.$.level': newLevel
-                                    }
+                        if len(achievementData) > 0:
+                            userAchievementFilter = [p for p in account[0]['achievement'] if p['name'] == achievementData[0]['name']]
+                            if len(userAchievementFilter) > 0:
+                                userAchievement = userAchievementFilter[0]
+                                # print(userAchievement)
+                                userAchievementLevel = userAchievement['level']
+                                userLastLevel = userAchievement['level'][len(userAchievementLevel)-1]['level']
+                                print(userLastLevel)
+                                for achievement in achievementData[0]['level']:
+                                    if progressDone == achievement['requirements']['theory']:
+                                        print("MASUK NEW ACHIEVEMENT")
+                                        if  achievement['level'] >= userLastLevel:
+                                            newLevel = {
+                                                "name": achievement['name'],
+                                                "description": achievement['description'],
+                                                "level": achievement['level'],
+                                                "createdAt": dateNow
+                                            }
+                                            expEarned = achievement['exp']
+                                            break
+                            else:
+                                newLevel = {
+                                    "name": achievementData[0]['level'][0]['name'],
+                                    "description": achievementData[0]['level'][0]['description'],
+                                    "level": achievementData[0]['level'][0]['level'],
+                                    "createdAt": dateNow
                                 }
-                            )
-                            newAchievement['levelUp'] = updateExp(expEarned, email)
-                            newAchievement['message'] = "New Achievement Archived!"
-                            newAchievement['status'] = "success"
+                                expEarned = achievement['exp']
+                            if bool(newLevel):
+                                print("MASUK UPDATE ACHIEVEMENT")
+                                
+                                accountCollection.update_one(
+                                    {
+                                        "email": email,
+                                        "achievement.name": achievementData[0]['name']
+                                    },
+                                    {
+                                        "$push": {
+                                            'achievement.$.level': newLevel
+                                        }
+                                    }
+                                )
+                                newAchievement['levelUp'] = updateExp(expEarned, email)
+                                newAchievement['message'] = "New Achievement Archived!"
+                                newAchievement['status'] = "success"
+                            else:
+                                print("GA MASUK UPDATE ACHIEVEMENT")
+                                newAchievement['levelUp'] = False
+                                newAchievement['message'] = "No Achievement Archived!"
+                                newAchievement['status'] = "error"
                         else:
                             newAchievement['levelUp'] = False
                             newAchievement['message'] = "No Achievement Archived!"
@@ -135,6 +163,7 @@ def checkAchievementTheory(email):
                                     "createdAt": dateNow
                                 })
                                 expEarned = achievement['exp']
+                                break
                         
                         accountCollection.update_one(
                             {"email": email},
@@ -172,105 +201,119 @@ def checkAchievementQuizz(email):
     if len(account) > 0:
         try:
             progressData = list(progressCollection.find({'email': email}))
-            print("quizz 3")
+            print("achievement 3")
             if len(progressData) > 0:
-                print("quizz 4")
+                print("achievement 4")
                 if len(progressData[0]['allProgress']) > 0:
-                    print("quizz 5")
+                    print("achievement 5")
                     #init data
                     progressDone = 0
                     newArchived = {}
                     dateNow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     for progress in progressData[0]['allProgress']:
-                        print("quizz 6")
+                        print("achievement 6")
                         if len(progress['progress']) > 0:
-                            print("quizz 7")
+                            print("achievement 7")
                             # check progress
                             for progressItem in progress['progress']:
-                                progressType = progressItem['progress'].split("-")[0]
-                                if progressType == "q" and progressItem['status'] == "done":
-                                    progressDone += 1
-                            print("quizz 12")
+                                
+                                print("achievement 7.1")
+                                # print(progressItem)
+                                if 'progress' in progressItem:
+                                    progressType = progressItem['progress'].split("-")[0]
+                                    if progressType == "q" and progressItem['status'] == "done":
+                                        progressDone += 1
+                                else:
+                                    break
+                            print("achievement 12")   
                             
                     # find achievement
                     achievementData = list(achievementCollection.find({'name': "Quizz Achievement"}).limit(1))
                     
-                    print("quizz 13")
+                    print("achievement 13")
                     
                     # check user achievement
                     if len(account[0]['achievement']) > 0:
-                        print("quizz 1")
+                        print("achievement 1")
                         newLevel = {}
-                        newArchived = {
-                            'name': achievementData[0]['name'],
-                            'level': []
-                        }
                         expEarned = 0
-                        for userAchievement in account[0]['achievement']:
-                            for achievement in achievementData[0]['level']:
-                                if userAchievement['name'] == achievementData[0]['name']:
-                                    for userAchievementLevel in userAchievement['level']:
-                                        if progressDone == achievement['requirements']['quizz']:
-                                            if  achievement['level'] >= userAchievementLevel['level']:
-                                                newLevel = {
-                                                    "name": achievement['name'],
-                                                    "description": achievement['description'],
-                                                    "level": achievement['level'],
-                                                    "createdAt": dateNow
-                                                }
-                                                expEarned = achievement['exp']
-                                else:
+                        isUpdate = False
+                        if len(achievementData) > 0:
+                            userAchievementFilter = [p for p in account[0]['achievement'] if p['name'] == achievementData[0]['name']]
+                            if len(userAchievementFilter) > 0:
+                                userAchievement = userAchievementFilter[0]
+                                # print(userAchievement)
+                                userAchievementLevel = userAchievement['level']
+                                userLastLevel = userAchievement['level'][len(userAchievementLevel)-1]['level']
+                                print(userLastLevel)
+                                for achievement in achievementData[0]['level']:
                                     if progressDone == achievement['requirements']['quizz']:
-                                        newArchived['level'].append({
-                                            "name": achievement['name'],
-                                            "description": achievement['description'],
-                                            "level": achievement['level'],
-                                            "createdAt": dateNow
-                                        })
-                                        expEarned = achievement['exp']
-                        print("quizz 1.1")
-                        if newLevel is not None and len(newLevel) > 0:
-                            print("quizz 1.2")
-                            accountCollection.update_one(
-                                {
-                                    "email": email,
-                                    "achievement.name": achievementData[0]['name']
-                                },
-                                {
-                                    "$push": {
-                                        'achievement.$.level': newLevel
-                                    }
+                                        print("MASUK NEW ACHIEVEMENT")
+                                        if  achievement['level'] >= userLastLevel:
+                                            newLevel = {
+                                                "name": achievement['name'],
+                                                "description": achievement['description'],
+                                                "level": achievement['level'],
+                                                "createdAt": dateNow
+                                            }
+                                            expEarned = achievement['exp']
+                                            break
+                            else:
+                                isUpdate = True
+                                newLevel = {
+                                    "name": achievementData[0]['level'][0]['name'],
+                                    "description": achievementData[0]['level'][0]['description'],
+                                    "level": achievementData[0]['level'][0]['level'],
+                                    "createdAt": dateNow
                                 }
-                            )
-                            newAchievement['levelUp'] = updateExp(expEarned, email)
-                            newAchievement['message'] = "New Achievement Archived!"
-                            newAchievement['status'] = "success"
-                        elif newArchived is not None and len(newArchived['level']) > 0:
-                            print("quizz 1.3")
-                            accountCollection.update_one(
-                                {"email": email},
-                                {
-                                    "$push": {
-                                        'achievement': newArchived
+                                expEarned = achievementData[0]['level'][0]['exp']
+                            if bool(newLevel):
+                                print("MASUK UPDATE ACHIEVEMENT")
+                                if isUpdate:
+                                    newArchived = {
+                                        'name': achievementData[0]['name'],
+                                        'level': []
                                     }
-                                }
-                            )
-                            newAchievement['levelUp'] = updateExp(expEarned, email)
-                            newAchievement['message'] = "New Achievement Archived!"
-                            newAchievement['status'] = "success"
+                                    newArchived['level'].append(newLevel)
+                                    accountCollection.update_one(
+                                        {"email": email},
+                                        {
+                                            "$push": {
+                                                'achievement': newArchived
+                                            }
+                                        }
+                                    )
+                                else:
+                                    accountCollection.update_one(
+                                        {
+                                            "email": email,
+                                            "achievement.name": achievementData[0]['name']
+                                        },
+                                        {
+                                            "$push": {
+                                                'achievement.$.level': newLevel
+                                            }
+                                        }
+                                    )
+                                newAchievement['levelUp'] = updateExp(expEarned, email)
+                                newAchievement['message'] = "New Achievement Archived!"
+                                newAchievement['status'] = "success"
+                            else:
+                                print("GA MASUK UPDATE ACHIEVEMENT")
+                                newAchievement['levelUp'] = False
+                                newAchievement['message'] = "No Achievement Archived!"
+                                newAchievement['status'] = "error"
                         else:
-                            print("quizz 1.4")
                             newAchievement['levelUp'] = False
                             newAchievement['message'] = "No Achievement Archived!"
                             newAchievement['status'] = "error"
                     else:
-                        print("quizz 2")
-                        print(achievementData)
+                        print("achievement 2")
+                        expEarned = 0
                         newArchived = {
                             'name': achievementData[0]['name'],
                             'level': []
                         }
-                        expEarned = 0
                         for achievement in achievementData[0]['level']:
                             if progressDone == achievement['requirements']['quizz']:
                                 newArchived['level'].append({
@@ -280,6 +323,7 @@ def checkAchievementQuizz(email):
                                     "createdAt": dateNow
                                 })
                                 expEarned = achievement['exp']
+                                break
                         
                         accountCollection.update_one(
                             {"email": email},
@@ -289,21 +333,20 @@ def checkAchievementQuizz(email):
                                 }
                             }
                         )
-                                
                         newAchievement['levelUp'] = updateExp(expEarned, email)
                         newAchievement['message'] = "New Achievement Archived!"
                         newAchievement['status'] = "success"
                 else:
-                    print("quizz 9")
+                    print("achievement 9")
                     newAchievement['message'] = "No Achievement Archived!"
                     newAchievement['status'] = "error"
             else:
-                print("quizz 10")
+                print("achievement 10")
                 newAchievement['message'] = "No Achievement Archived!"
                 newAchievement['status'] = "error"
         except Exception as e:
             print(e)
-            print("quizz 11")
+            print("achievement 11")
             newAchievement['message'] = "Internal Server Error!"
             newAchievement['status'] = "error"
     else:
