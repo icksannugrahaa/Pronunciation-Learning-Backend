@@ -338,7 +338,7 @@
         "theory_type": "text,image",
         "quiz_type": "text,image",
         "summary": true,
-        "summary_type": "text,song"
+        "summary_type": "text,image,song"
       },
       "theory": [
         {
@@ -1109,9 +1109,9 @@
         {
           "title": "Teori",
           "subtitle": "Mari baca teks dibawah gambar, lalu tekan mic untuk mulai perekaman!",
-          "question": "This is a Ziper",
+          "question": "This is a Zipper",
           "order": 13,
-          "image": "/api/file/show?filename=ziper.png&path=/lessons/lesson-1/lesson-1-4/images"
+          "image": "/api/file/show?filename=zipper.png&path=/lessons/lesson-1/lesson-1-4/images"
         },
         {
           "title": "Teori",
@@ -1143,7 +1143,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=yoyo.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=yoyo.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 2,
           "answer": [
             "yoyo",
@@ -1160,7 +1160,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=tiger.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=tiger.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 3,
           "answer": [
             "tiger",
@@ -1177,7 +1177,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=water.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=water.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 4,
           "answer": [
             "water",
@@ -1194,7 +1194,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=vase.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=vase.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 5,
           "answer": [
             "vase",
@@ -1211,7 +1211,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=up.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=up.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 6,
           "answer": [
             "up",
@@ -1228,7 +1228,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=xray.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=xray.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 7,
           "answer": [
             "xray",
@@ -1245,7 +1245,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=yummy.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=yummy.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 8,
           "answer": [
             "yummy",
@@ -1262,24 +1262,24 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=ziper.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=zipper.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 9,
           "answer": [
-            "ziper",
-            "a ziper",
-            "This is a ziper",
-            "That is ziper",
-            "It is ziper",
-            "It is a ziper",
-            "It's a ziper",
-            "It's ziper"
+            "zipper",
+            "a zipper",
+            "This is a zipper",
+            "That is zipper",
+            "It is zipper",
+            "It is a zipper",
+            "It's a zipper",
+            "It's zipper"
           ]
         },
         {
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=wolf.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=wolf.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 10,
           "answer": [
             "wolf",
@@ -1296,7 +1296,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=xylophone.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=xylophone.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 11,
           "answer": [
             "xylophone",
@@ -1313,7 +1313,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=umbrella.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=umbrella.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 12,
           "answer": [
             "umbrella",
@@ -1330,7 +1330,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=violin.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=violin.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 13,
           "answer": [
             "violin",
@@ -1347,7 +1347,7 @@
           "title": "Kuis",
           "subtitle": "Perhatikan gambar dibawah, jawab seperti teori sebelumnya, lalu tekan mic untuk mulai perekaman!",
           "question": "What picture is that ?",
-          "image": "/api/file/show?filename=zebra.png&path=/lessons/lesson-1/lesson-1-3/images",
+          "image": "/api/file/show?filename=zebra.png&path=/lessons/lesson-1/lesson-1-4/images",
           "order": 14,
           "answer": [
             "zebra",
