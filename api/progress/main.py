@@ -533,6 +533,18 @@ def store():
                                                             }
                                                         ]
                                                     )
+                                                    if results['levelUp']:
+                                                        # check new achievement level
+                                                        newAchivementLevel = achievementUtils.checkAchievementLevel(currentAccount)
+                                                        if newAchivementLevel['status'] == 'success':
+                                                            results['levelUp'] = True if results['levelUp'] == True or newAchivementLevel['levelUp'] == True else False
+                                                            results['newAchievement'] = True if results['newAchievement'] == True or newAchivementLevel['status'] == 'success' else False
+                                                            results['newAchievementMsg'] = newAchivementLevel['message']
+                                                        else:
+                                                            results['levelUp'] = True if results['levelUp'] == True or newAchivementLevel['levelUp'] == True else False
+                                                            results['newAchievement'] = True if results['newAchievement'] == True or newAchivementLevel['status'] == 'success' else False
+                                                            results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementLevel['message']
+                                                    
                                                     break
                                                 elif nextProgressData and progressSplit[0] == "s" and lessonSplit[0] == nextProgressData['lesson'].split('-')[0]:
                                                     print('masuk sini 8')
@@ -573,6 +585,18 @@ def store():
                                                             "levelName": newLevelName
                                                         }       
                                                     })
+                                                    
+                                                    if results['levelUp']:
+                                                        # check new achievement level
+                                                        newAchivementLevel = achievementUtils.checkAchievementLevel(currentAccount)
+                                                        if newAchivementLevel['status'] == 'success':
+                                                            results['levelUp'] = True if results['levelUp'] == True or newAchivementLevel['levelUp'] == True else False
+                                                            results['newAchievement'] = True if results['newAchievement'] == True or newAchivementLevel['status'] == 'success' else False
+                                                            results['newAchievementMsg'] = newAchivementLevel['message']
+                                                        else:
+                                                            results['levelUp'] = True if results['levelUp'] == True or newAchivementLevel['levelUp'] == True else False
+                                                            results['newAchievement'] = True if results['newAchievement'] == True or newAchivementLevel['status'] == 'success' else False
+                                                            results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementLevel['message']
                                                         
                                                     # save to scoreboard
                                                     checkScoreBoard = list(scoreboardCollection.find({'email': currentAccount, 'lesson': request.form['lesson']}))
@@ -655,6 +679,18 @@ def store():
                                                             "levelName": newLevelName
                                                         }       
                                                     })
+                                                    
+                                                    if results['levelUp']:
+                                                        # check new achievement level
+                                                        newAchivementLevel = achievementUtils.checkAchievementLevel(currentAccount)
+                                                        if newAchivementLevel['status'] == 'success':
+                                                            results['levelUp'] = True if results['levelUp'] == True or newAchivementLevel['levelUp'] == True else False
+                                                            results['newAchievement'] = True if results['newAchievement'] == True or newAchivementLevel['status'] == 'success' else False
+                                                            results['newAchievementMsg'] = newAchivementLevel['message']
+                                                        else:
+                                                            results['levelUp'] = True if results['levelUp'] == True or newAchivementLevel['levelUp'] == True else False
+                                                            results['newAchievement'] = True if results['newAchievement'] == True or newAchivementLevel['status'] == 'success' else False
+                                                            results['newAchievementMsg'] = "New Achievement Archived!" if results['newAchievement'] == True else newAchivementLevel['message']
                                                         
                                                     # save to scoreboard
                                                     checkScoreBoard = list(scoreboardCollection.find({'email': currentAccount, 'lesson': request.form['lesson']}))

@@ -1,5 +1,8 @@
 [
     {
+        "_id": {
+            "$oid": "62fc76c7381e0563e7a01912"
+        },
         "name": "Theory Achievement",
         "image": "/api/file/show?filename=guest.png&path=/images",
         "level": [
@@ -18,7 +21,7 @@
                 "level": 2,
                 "exp": 200,
                 "requirements": {
-                    "theory": 3
+                    "theory": 10
                 }
             },
             {
@@ -27,7 +30,7 @@
                 "level": 3,
                 "exp": 300,
                 "requirements": {
-                    "theory": 5
+                    "theory": 25
                 }
             },
             {
@@ -36,7 +39,7 @@
                 "level": 4,
                 "exp": 400,
                 "requirements": {
-                    "theory": 7
+                    "theory": 50
                 }
             },
             {
@@ -45,12 +48,15 @@
                 "level": 5,
                 "exp": 500,
                 "requirements": {
-                    "theory": 10
+                    "theory": 100
                 }
             }
         ]
     },
     {
+        "_id": {
+            "$oid": "62fc76e0381e0563e7a01913"
+        },
         "name": "Quizz Achievement",
         "image": "/api/file/show?filename=guest.png&path=/images",
         "level": [
@@ -69,7 +75,7 @@
                 "level": 2,
                 "exp": 200,
                 "requirements": {
-                    "quizz": 3
+                    "quizz": 10
                 }
             },
             {
@@ -78,7 +84,7 @@
                 "level": 3,
                 "exp": 300,
                 "requirements": {
-                    "quizz": 5
+                    "quizz": 25
                 }
             },
             {
@@ -87,7 +93,7 @@
                 "level": 4,
                 "exp": 400,
                 "requirements": {
-                    "quizz": 7
+                    "quizz": 50
                 }
             },
             {
@@ -96,12 +102,15 @@
                 "level": 5,
                 "exp": 500,
                 "requirements": {
-                    "quizz": 10
+                    "quizz": 100
                 }
             }
         ]
     },
     {
+        "_id": {
+            "$oid": "62fc76ed381e0563e7a01914"
+        },
         "name": "Level Achievement",
         "image": "/api/file/show?filename=guest.png&path=/images",
         "level": [
@@ -111,8 +120,7 @@
                 "level": 1,
                 "exp": 100,
                 "requirements": {
-                    "level": 1,
-                    "exp": 1,
+                    "level": 2,
                     "levelName": "Beginner"
                 }
             },
@@ -123,7 +131,6 @@
                 "exp": 200,
                 "requirements": {
                     "level": 4,
-                    "exp": 3000,
                     "levelName": "Intermediate"
                 }
             },
@@ -134,110 +141,7 @@
                 "exp": 300,
                 "requirements": {
                     "level": 6,
-                    "exp": 6000,
                     "levelName": "Advance"
-                }
-            }
-        ]
-    },
-    {
-        "name": "Lesson Achievement",
-        "image": "/api/file/show?filename=guest.png&path=/images",
-        "level": [
-            {
-                "name": "Level 1 - Lesson Achievement",
-                "description": "Completed 1 of Lesson",
-                "level": 1,
-                "exp": 500,
-                "requirements": {
-                    "lesson": 1
-                }
-            },
-            {
-                "name": "Level 2 - Lesson Achievement",
-                "description": "Completed 5 of Lesson",
-                "level": 2,
-                "exp": 500,
-                "requirements": {
-                    "lesson": 5
-                }
-            },
-            {
-                "name": "Level 3 - Lesson Achievement",
-                "description": "Completed 15 of Lesson",
-                "level": 3,
-                "exp": 500,
-                "requirements": {
-                    "lesson": 15
-                }
-            },
-            {
-                "name": "Level 4 - Lesson Achievement",
-                "description": "Completed 30 of Lesson",
-                "level": 4,
-                "exp": 500,
-                "requirements": {
-                    "lesson": 30
-                }
-            },
-            {
-                "name": "Level 5 - Lesson Achievement",
-                "description": "Completed 50 of Lesson",
-                "level": 5,
-                "exp": 500,
-                "requirements": {
-                    "lesson": 50
-                }
-            }
-        ]
-    },
-    {
-        "name": "Module Achievement",
-        "image": "/api/file/show?filename=guest.png&path=/images",
-        "level": [
-            {
-                "name": "Level 1 - Module Achievement",
-                "description": "Completed 1 of Module",
-                "level": 1,
-                "exp": 1000,
-                "requirements": {
-                    "module": 1
-                }
-            },
-            {
-                "name": "Level 2 - Module Achievement",
-                "description": "Completed 3 of Module",
-                "level": 2,
-                "exp": 1000,
-                "requirements": {
-                    "module": 3
-                }
-            },
-            {
-                "name": "Level 3 - Module Achievement",
-                "description": "Completed 8 of Module",
-                "level": 3,
-                "exp": 1000,
-                "requirements": {
-                    "module": 8
-                }
-            },
-            {
-                "name": "Level 4 - Module Achievement",
-                "description": "Completed 14 of Module",
-                "level": 4,
-                "exp": 1000,
-                "requirements": {
-                    "module": 14
-                }
-            },
-            {
-                "name": "Level 5 - Module Achievement",
-                "description": "Completed 20 of Module",
-                "level": 5,
-                "exp": 1000,
-                "requirements": {
-                    "module": 20
                 }
             }
         ]

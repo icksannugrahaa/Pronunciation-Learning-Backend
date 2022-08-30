@@ -1,0 +1,7 @@
+[
+    {  "_id": {    "$oid": "62ea5af4714792736763edd8"  },  "name": "Beginner",  "exp": 2000,  "level": 2},
+    {  "_id": {    "$oid": "62ea5c02714792736763edd9"  },  "name": "Beginner",  "exp": 3000,  "level": 3},
+    {  "_id": {    "$oid": "62ea5c10714792736763edda"  },  "name": "Intermediate",  "exp": 5000,  "level": 4},
+    {  "_id": {    "$oid": "62ea5c20714792736763eddb"  },  "name": "Intermediate",  "exp": 7000,  "level": 5},
+    {  "_id": {    "$oid": "62ea5c34714792736763eddc"  },  "name": "Advance",  "exp": 10000,  "level": 6}
+]
