@@ -1,340 +1,5 @@
 [{
   "_id": {
-    "$oid": "62bd8fe4caedf616c04007c5"
-  },
-  "name": "Grammar",
-  "description": "Kursus ini mengajarkan konsep dasar tata bahasa Inggris yang diperlukan untuk berbicara dan menulis secara akurat. Topik termasuk struktur kalimat, bentuk kata kerja, kata depan, dan banyak lagi.",
-  "highscore": 0,
-  "level": 1,
-  "order": 2,
-  "rating": 0,
-  "required": false,
-  "lessons": [
-    {
-      "order": 1,
-      "name": "I am a cook, Subject + Verb + Complement (SVC)",
-      "description": "Dengan kata ganti dan kata kerja 'be', Anda akan dapat memberikan informasi dasar tentang suatu subjek.",
-      "level": 1,
-      "exp": 500,
-      "enableSkip": true,
-      "option": {
-        "quiz": true,
-        "theory_type": "text",
-        "quiz_type": "text",
-        "summary": true,
-        "summary_type": "text,image"
-      },
-      "theory": [
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "I am a cook",
-          "order": 1,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "Sally and I are cooks",
-          "order": 2,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "We are cooks",
-          "order": 3,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "You are a cook",
-          "order": 4,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "You are cooks",
-          "order": 5,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "John is a cook",
-          "order": 6,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "He is a cook",
-          "order": 7,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "Susan is a cook",
-          "order": 8,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "She is a cook",
-          "order": 9,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "Susan and John are cooks",
-          "order": 10,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "They are cooks",
-          "order": 11,
-          "image": ""
-        }
-      ],
-      "quiz": [
-        {
-          "title": "Kuis - Lengkapi Kalimat",
-          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
-          "question": "I __ a soldier",
-          "image": "",
-          "order": 1,
-          "answer": [
-            "am",
-            "Am"
-          ]
-        },
-        {
-          "title": "Kuis - Lengkapi Kalimat",
-          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
-          "question": "You __ a painter",
-          "image": "",
-          "order": 2,
-          "answer": [
-            "are",
-            "Are"
-          ]
-        },
-        {
-          "title": "Kuis - Lengkapi Kalimat",
-          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
-          "question": "She __ a cashier",
-          "image": "",
-          "order": 3,
-          "answer": [
-            "is",
-            "Is"
-          ]
-        },
-        {
-          "title": "Kuis - Lengkapi Kalimat",
-          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
-          "question": "We __ barbers",
-          "image": "",
-          "order": 4,
-          "answer": [
-            "are",
-            "Are"
-          ]
-        },
-        {
-          "title": "Kuis - Lengkapi Kalimat",
-          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
-          "question": "They __ Waiters",
-          "image": "",
-          "order": 4,
-          "answer": [
-            "are",
-            "Are"
-          ]
-        }
-      ],
-      "summary": {
-        "title": "Kesimpulan",
-        "text": "<b>Grammar fokus</b> <br><br> 'I am a cook' adalah contoh pola kalimat yang sangat mendasar dalam bahasa Inggris: Subject + Verb + Complement (SVC). 'I' adalah subjeknya. 'Am' adalah kata kerja. 'A cook' adalah pelengkap subjek. Pelajaran ini akan fokus pada subjek dan kata kerja. <br><br> <b>Subjek</b> <br><br>Subjek adalah bagian pertama dari kalimat SVC 'I am a cook'. Subjek adalah fokus kalimat. Jenis subjek yang paling dasar adalah kata benda, yaitu orang (Sally), tempat (the park), atau benda (a movie). Alih-alih kata benda, kita juga bisa menggunakan kata ganti subjek pribadi. <br>Ini adalah kata ganti subjek pribadi orang pertama: <li> I</li><li> we (jamak dari 'I', dapat menggantikan 'Sally and I')</li> <br> Ini adalah kata ganti subjek pribadi orang ke-2: <li> you (tunggal dan jamak) </li> <br>Ini adalah kata ganti subjek pribadi orang ke-3: <li> he (pria, dapat menggantikan 'John')</li> <li> she (perempuan, bisa menggantikan 'Sally') </li> <li> it (benda atau binatang) </li> <li> they (jamak dari 'he'/'she'/'it', dapat menggantikan 'Sally and John')</li> <br><br>Kata kerja penghubung 'be' <br><br>Kata kerja penghubung adalah bagian kedua dari kalimat 'I am a cook'. Ini menghubungkan (connects) subjek 'I' dengan informasi tentang subjek, 'a cook'. Kata kerja penghubung yang paling dasar adalah 'be'. <br><br>Dalam bahasa Inggris, subjek adalah bagian terpenting dari kalimat. Kata kerja, seperti 'be', berubah bentuk menjadi 'agree with' subjeknya. Bentuk 'be' adalah: am, are, and is.<br><br> <li> Saya seorang koki.</li> <li> Anda seorang juru masak.</li> <li> Kami adalah juru masak.</li><li> Mereka adalah juru masak.</li> <li> Dia adalah seorang juru masak.</li> <li> Ini adalah film.</li> <br><br>Singkatan <br><br>Saat berbicara, kita sering menyingkat (i.e. shorten) kata atau frasa. Banyak frasa dengan kata kerja penghubung disingkat menggunakan apostrof ('): <li> I am a cook -> I'm a cook.</li> <li> We are cooks -> We're cooks.</li> <li> You are a cook -> You're acook. </li> <li> They are cooks -> They're cooks.</li> <li> He is a cook -> He's a cook.</li> <li>- She is a cook -> She's a cook. </li><li> It is a movie -> It's a movie.</li>",
-        "song": "",
-        "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
-      },
-      "requirements": {
-        "level": 1
-      }
-    },
-    {
-      "order": 2,
-      "name": "I cook dinner, Subject + Verb (SV) / Subject + Verb + Object (SVO)",
-      "description": "Setelah pelajaran ini, Anda akan dapat membentuk kalimat dengan tindakan.",
-      "level": 1,
-      "exp": 500,
-      "enableSkip": true,
-      "option": {
-        "quiz": true,
-        "theory_type": "text",
-        "quiz_type": "text",
-        "summary": true,
-        "summary_type": "text,image"
-      },
-      "theory": [
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "I cook dinner",
-          "order": 1,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "She drinks",
-          "order": 2,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "She drinks juice",
-          "order": 3,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "We play tennis",
-          "order": 4,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "We see him",
-          "order": 5,
-          "image": ""
-        },
-        {
-          "title": "Latihan kalimat",
-          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
-          "question": "The team needs us",
-          "order": 6,
-          "image": ""
-        }
-      ],
-      "quiz": [
-        {
-          "title": "Kuis - True or False",
-          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
-          "question": "I books read",
-          "image": "",
-          "order": 1,
-          "answer": [
-            "false"
-          ]
-        },
-        {
-          "title": "Kuis - True or False",
-          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
-          "question": "She TV watches",
-          "image": "",
-          "order": 2,
-          "answer": [
-            "false"
-          ]
-        },
-        {
-          "title": "Kuis - True or False",
-          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
-          "question": "John hates she",
-          "image": "",
-          "order": 3,
-          "answer": [
-            "true"
-          ]
-        },
-        {
-          "title": "Kuis - True or False",
-          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
-          "question": "I like they",
-          "image": "",
-          "order": 4,
-          "answer": [
-            "true"
-          ]
-        },
-        {
-          "title": "Kuis - True or False",
-          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
-          "question": "They dislike he",
-          "image": "",
-          "order": 5,
-          "answer": [
-            "true"
-          ]
-        },
-        {
-          "title": "Kuis - True or False",
-          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
-          "question": "They alcohol drink",
-          "image": "",
-          "order": 6,
-          "answer": [
-            "false"
-          ]
-        }
-      ],
-      "summary": {
-        "title": "Kesimpulan",
-        "text": "<div class='css-1orc5p8'><div class='css-0'><div class='css-5tp5y4'><div class='css-1czkgpg'><div><span class='css-61py4y'><a href='/app/lessons/grammar-grammar-i-cook-dinner/cYJ8AooGEeenT7dQZ9gjVg?category_id=6r1fXsYHEeimuzOlcF_9gA&amp;course_id=1llXaMYPEeiWI9-YoYwf4A#explanation-1' class='css-nn640c'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Grammar Focus</span></span></span></a></span><span class='css-1t8ldq1'><span class='css-17poqz3'><span></span></span></span></div></div></div><div><div></div></div><div><div><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Subject + Verb (SV)</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>'I cook', 'She drinks', and 'We play' are examples of a very basic sentence pattern in English:</span><strong>Subject + Verb (SV)</strong><span>.</span></span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>The subjects (I, she, we) do some action (cook, drink, play).</span></span></span></p><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Subject + Verb + Object (SVO)</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>Sometimes we want to be more specific and say 'I cook</span><em>dinner</em><span>', 'She drinks</span><em>juice</em><span>', and 'We play</span><em>tennis</em><span>'.</span></span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>When we add these 'objects' to the sentences, we get a new sentence pattern:</span><strong>Subject + Verb + Object (SVO)</strong><span>.</span></span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>SVO is the most common sentence pattern in English.</span></span></span></p><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Object Pronouns</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>We know Subject Pronouns like 'I,' 'he', and 'they'.</span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Objects also have pronouns.</span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>We use</span><strong>object pronouns</strong><span>to replace objects:</span></span></span></span></p><div class='css-h773az'></div><ul><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>Sarah hates</span><strong>me</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>Sarah likes</span><strong>you</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>We know Tim. → We know</span><strong>him</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>We know Sarah. → We know</span><strong>her</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>She drinks juice. → She drinks</span><strong>it</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>I cook eggs. → I cook</span><strong>them</strong><span>.</span></span></span></span></li></ul><div class='css-1tx38fa'><div class='css-1rj1g7w'><div class='css-dl8h7l'><div class='css-1tx38fa'><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Note</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>'You' and 'it' are the same as subject and object pronouns.</span></span></span></p><div class='css-1dc47qu'><p class='css-54q8sn'><span class='css-17poqz3'><span></span></span></p></div></div></div></div></div></div></div></div></div>",
-        "song": "",
-        "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
-      },
-      "requirements": {
-        "level": 1
-      }
-    }
-  ],
-  "comments": [
-    {
-      "name": "Icksan",
-      "comment": "Nice class",
-      "rating": 4,
-      "createdAt": "2022-05-17 00:00:00",
-      "avatar": "/api/file/show?filename=guest.png&path=/images",
-      "email": "icksannugrahaa@gmail.com"
-    },
-    {
-      "name": "Thomas Alfa Indomaret",
-      "email": "test@gmail.com",
-      "comment": "mantep slurr, jos gandos lah pokona hehehehe",
-      "createdAt": "2022-08-13 09:08:03",
-      "rating": 4.5,
-      "avatar": null
-    },
-    {
-      "name": "Gerad Wijaya ",
-      "email": "fyzyhaba@decabg.eu",
-      "comment": "module nya bukan kaleng2, tapi aplikasi masih seadanya ya, semangat dev",
-      "createdAt": "2022-08-13 13:48:37",
-      "rating": 5,
-      "avatar": "/api/file/show?filename=guest.png&path=/images"
-    }
-  ],
-  "successful": 0,
-  "status": true,
-  "requirements": {
-    "level": 1
-  },
-  "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
-},{
-  "_id": {
     "$oid": "62bd8fe4caedf616c04007c4"
   },
   "name": "English For Kids",
@@ -1863,4 +1528,339 @@
     "level": 1
   },
   "image": "/api/file/show?filename=bg-lesson-1.jpg&path=/images"
+},{
+  "_id": {
+    "$oid": "62bd8fe4caedf616c04007c5"
+  },
+  "name": "Grammar",
+  "description": "Kursus ini mengajarkan konsep dasar tata bahasa Inggris yang diperlukan untuk berbicara dan menulis secara akurat. Topik termasuk struktur kalimat, bentuk kata kerja, kata depan, dan banyak lagi.",
+  "highscore": 0,
+  "level": 1,
+  "order": 2,
+  "rating": 0,
+  "required": false,
+  "lessons": [
+    {
+      "order": 1,
+      "name": "I am a cook, Subject + Verb + Complement (SVC)",
+      "description": "Dengan kata ganti dan kata kerja 'be', Anda akan dapat memberikan informasi dasar tentang suatu subjek.",
+      "level": 1,
+      "exp": 500,
+      "enableSkip": true,
+      "option": {
+        "quiz": true,
+        "theory_type": "text",
+        "quiz_type": "text",
+        "summary": true,
+        "summary_type": "text,image"
+      },
+      "theory": [
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "I am a cook",
+          "order": 1,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "Sally and I are cooks",
+          "order": 2,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "We are cooks",
+          "order": 3,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "You are a cook",
+          "order": 4,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "You are cooks",
+          "order": 5,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "John is a cook",
+          "order": 6,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "He is a cook",
+          "order": 7,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "Susan is a cook",
+          "order": 8,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "She is a cook",
+          "order": 9,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "Susan and John are cooks",
+          "order": 10,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "They are cooks",
+          "order": 11,
+          "image": ""
+        }
+      ],
+      "quiz": [
+        {
+          "title": "Kuis - Lengkapi Kalimat",
+          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+          "question": "I __ a soldier",
+          "image": "",
+          "order": 1,
+          "answer": [
+            "am",
+            "Am"
+          ]
+        },
+        {
+          "title": "Kuis - Lengkapi Kalimat",
+          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+          "question": "You __ a painter",
+          "image": "",
+          "order": 2,
+          "answer": [
+            "are",
+            "Are"
+          ]
+        },
+        {
+          "title": "Kuis - Lengkapi Kalimat",
+          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+          "question": "She __ a cashier",
+          "image": "",
+          "order": 3,
+          "answer": [
+            "is",
+            "Is"
+          ]
+        },
+        {
+          "title": "Kuis - Lengkapi Kalimat",
+          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+          "question": "We __ barbers",
+          "image": "",
+          "order": 4,
+          "answer": [
+            "are",
+            "Are"
+          ]
+        },
+        {
+          "title": "Kuis - Lengkapi Kalimat",
+          "subtitle": "Mari lengkapi kalimat dibawah dengan (is, am, are), lalu tekan mic untuk mulai perekaman!",
+          "question": "They __ Waiters",
+          "image": "",
+          "order": 4,
+          "answer": [
+            "are",
+            "Are"
+          ]
+        }
+      ],
+      "summary": {
+        "title": "Kesimpulan",
+        "text": "<b>Grammar fokus</b> <br><br> 'I am a cook' adalah contoh pola kalimat yang sangat mendasar dalam bahasa Inggris: Subject + Verb + Complement (SVC). 'I' adalah subjeknya. 'Am' adalah kata kerja. 'A cook' adalah pelengkap subjek. Pelajaran ini akan fokus pada subjek dan kata kerja. <br><br> <b>Subjek</b> <br><br>Subjek adalah bagian pertama dari kalimat SVC 'I am a cook'. Subjek adalah fokus kalimat. Jenis subjek yang paling dasar adalah kata benda, yaitu orang (Sally), tempat (the park), atau benda (a movie). Alih-alih kata benda, kita juga bisa menggunakan kata ganti subjek pribadi. <br>Ini adalah kata ganti subjek pribadi orang pertama: <li> I</li><li> we (jamak dari 'I', dapat menggantikan 'Sally and I')</li> <br> Ini adalah kata ganti subjek pribadi orang ke-2: <li> you (tunggal dan jamak) </li> <br>Ini adalah kata ganti subjek pribadi orang ke-3: <li> he (pria, dapat menggantikan 'John')</li> <li> she (perempuan, bisa menggantikan 'Sally') </li> <li> it (benda atau binatang) </li> <li> they (jamak dari 'he'/'she'/'it', dapat menggantikan 'Sally and John')</li> <br><br>Kata kerja penghubung 'be' <br><br>Kata kerja penghubung adalah bagian kedua dari kalimat 'I am a cook'. Ini menghubungkan (connects) subjek 'I' dengan informasi tentang subjek, 'a cook'. Kata kerja penghubung yang paling dasar adalah 'be'. <br><br>Dalam bahasa Inggris, subjek adalah bagian terpenting dari kalimat. Kata kerja, seperti 'be', berubah bentuk menjadi 'agree with' subjeknya. Bentuk 'be' adalah: am, are, and is.<br><br> <li> Saya seorang koki.</li> <li> Anda seorang juru masak.</li> <li> Kami adalah juru masak.</li><li> Mereka adalah juru masak.</li> <li> Dia adalah seorang juru masak.</li> <li> Ini adalah film.</li> <br><br>Singkatan <br><br>Saat berbicara, kita sering menyingkat (i.e. shorten) kata atau frasa. Banyak frasa dengan kata kerja penghubung disingkat menggunakan apostrof ('): <li> I am a cook -> I'm a cook.</li> <li> We are cooks -> We're cooks.</li> <li> You are a cook -> You're acook. </li> <li> They are cooks -> They're cooks.</li> <li> He is a cook -> He's a cook.</li> <li>- She is a cook -> She's a cook. </li><li> It is a movie -> It's a movie.</li>",
+        "song": "",
+        "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "order": 2,
+      "name": "I cook dinner, Subject + Verb (SV) / Subject + Verb + Object (SVO)",
+      "description": "Setelah pelajaran ini, Anda akan dapat membentuk kalimat dengan tindakan.",
+      "level": 1,
+      "exp": 500,
+      "enableSkip": true,
+      "option": {
+        "quiz": true,
+        "theory_type": "text",
+        "quiz_type": "text",
+        "summary": true,
+        "summary_type": "text,image"
+      },
+      "theory": [
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "I cook dinner",
+          "order": 1,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "She drinks",
+          "order": 2,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "She drinks juice",
+          "order": 3,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "We play tennis",
+          "order": 4,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "We see him",
+          "order": 5,
+          "image": ""
+        },
+        {
+          "title": "Latihan kalimat",
+          "subtitle": "Mari baca teks dibawah, lalu tekan mic untuk mulai perekaman!",
+          "question": "The team needs us",
+          "order": 6,
+          "image": ""
+        }
+      ],
+      "quiz": [
+        {
+          "title": "Kuis - True or False",
+          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
+          "question": "I books read",
+          "image": "",
+          "order": 1,
+          "answer": [
+            "false"
+          ]
+        },
+        {
+          "title": "Kuis - True or False",
+          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
+          "question": "She TV watches",
+          "image": "",
+          "order": 2,
+          "answer": [
+            "false"
+          ]
+        },
+        {
+          "title": "Kuis - True or False",
+          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
+          "question": "John hates she",
+          "image": "",
+          "order": 3,
+          "answer": [
+            "true"
+          ]
+        },
+        {
+          "title": "Kuis - True or False",
+          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
+          "question": "I like they",
+          "image": "",
+          "order": 4,
+          "answer": [
+            "true"
+          ]
+        },
+        {
+          "title": "Kuis - True or False",
+          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
+          "question": "They dislike he",
+          "image": "",
+          "order": 5,
+          "answer": [
+            "true"
+          ]
+        },
+        {
+          "title": "Kuis - True or False",
+          "subtitle": "Mari jawab kalimat dibawah dengan (true atau false), lalu tekan mic untuk mulai perekaman!",
+          "question": "They alcohol drink",
+          "image": "",
+          "order": 6,
+          "answer": [
+            "false"
+          ]
+        }
+      ],
+      "summary": {
+        "title": "Kesimpulan",
+        "text": "<div class='css-1orc5p8'><div class='css-0'><div class='css-5tp5y4'><div class='css-1czkgpg'><div><span class='css-61py4y'><a href='/app/lessons/grammar-grammar-i-cook-dinner/cYJ8AooGEeenT7dQZ9gjVg?category_id=6r1fXsYHEeimuzOlcF_9gA&amp;course_id=1llXaMYPEeiWI9-YoYwf4A#explanation-1' class='css-nn640c'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Grammar Focus</span></span></span></a></span><span class='css-1t8ldq1'><span class='css-17poqz3'><span></span></span></span></div></div></div><div><div></div></div><div><div><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Subject + Verb (SV)</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>'I cook', 'She drinks', and 'We play' are examples of a very basic sentence pattern in English:</span><strong>Subject + Verb (SV)</strong><span>.</span></span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>The subjects (I, she, we) do some action (cook, drink, play).</span></span></span></p><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Subject + Verb + Object (SVO)</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>Sometimes we want to be more specific and say 'I cook</span><em>dinner</em><span>', 'She drinks</span><em>juice</em><span>', and 'We play</span><em>tennis</em><span>'.</span></span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>When we add these 'objects' to the sentences, we get a new sentence pattern:</span><strong>Subject + Verb + Object (SVO)</strong><span>.</span></span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>SVO is the most common sentence pattern in English.</span></span></span></p><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Object Pronouns</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>We know Subject Pronouns like 'I,' 'he', and 'they'.</span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Objects also have pronouns.</span></span></span><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>We use</span><strong>object pronouns</strong><span>to replace objects:</span></span></span></span></p><div class='css-h773az'></div><ul><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>Sarah hates</span><strong>me</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>Sarah likes</span><strong>you</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>We know Tim. → We know</span><strong>him</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>We know Sarah. → We know</span><strong>her</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>She drinks juice. → She drinks</span><strong>it</strong><span>.</span></span></span></span></li><li><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span><span>I cook eggs. → I cook</span><strong>them</strong><span>.</span></span></span></span></li></ul><div class='css-1tx38fa'><div class='css-1rj1g7w'><div class='css-dl8h7l'><div class='css-1tx38fa'><div class='css-h773az'><div class='css-1sw3sz9'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>Note</span></span></span></div></div><p class='css-54q8sn'><span class='css-79elbk'><span class='css-17poqz3' lang='en'><span>'You' and 'it' are the same as subject and object pronouns.</span></span></span></p><div class='css-1dc47qu'><p class='css-54q8sn'><span class='css-17poqz3'><span></span></span></p></div></div></div></div></div></div></div></div></div>",
+        "song": "",
+        "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
+      },
+      "requirements": {
+        "level": 1
+      }
+    }
+  ],
+  "comments": [
+    {
+      "name": "Icksan",
+      "comment": "Nice class",
+      "rating": 4,
+      "createdAt": "2022-05-17 00:00:00",
+      "avatar": "/api/file/show?filename=guest.png&path=/images",
+      "email": "icksannugrahaa@gmail.com"
+    },
+    {
+      "name": "Thomas Alfa Indomaret",
+      "email": "test@gmail.com",
+      "comment": "mantep slurr, jos gandos lah pokona hehehehe",
+      "createdAt": "2022-08-13 09:08:03",
+      "rating": 4.5,
+      "avatar": null
+    },
+    {
+      "name": "Gerad Wijaya ",
+      "email": "fyzyhaba@decabg.eu",
+      "comment": "module nya bukan kaleng2, tapi aplikasi masih seadanya ya, semangat dev",
+      "createdAt": "2022-08-13 13:48:37",
+      "rating": 5,
+      "avatar": "/api/file/show?filename=guest.png&path=/images"
+    }
+  ],
+  "successful": 0,
+  "status": true,
+  "requirements": {
+    "level": 1
+  },
+  "image": "/api/file/show?filename=bg-lesson-2.jpeg&path=/images"
 }]

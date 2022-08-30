@@ -56,7 +56,7 @@ def process_data(request):
     output = []
     outputs = []
     query = {}
-    custom_order = {'sort_by': 'order'}
+    custom_order = {'sort_by': 'order','order_by':'asc'}
     pageData = dataUtils.get_pagination_data(request, custom_order)
     
     if 'search' in request.form and request.form['search'] != '' and request.form['search'] != 'null':
